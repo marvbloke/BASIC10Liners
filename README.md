@@ -1,4 +1,4 @@
-# BASIC10Liners
+# Matthew Begg's BASIC 10 Liner Collection
 This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the present day. Find out more about the BASIC 10 Liner contest at [www.basic10liner.com](https://www.basic10liner.com) and find all entries at [bunsen.itch.io](https://bunsen.itch.io).
 ## 2025
 ### EXTREM-256
