@@ -1,5 +1,5 @@
 # BASIC10Liners
-Matthew Begg's BASIC 10 Liners
+This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the present day. Find out more about the BASIC 10 Liner contest at [www.basic10liner.com](https://www.basic10liner.com) and find all entries at [bunsen.itch.io](https://bunsen.itch.io).
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
@@ -24,9 +24,40 @@ Ever tried writing a BASIC interpreter inside a BASIC interpreter? No? Well, I'v
 Buy, make, sell, and research your way to profit without burning out!
 
 Hardware Hustle is a really fun turn-based resource management game that simulates the running of a small hardware business over 6 days. You'll be buying parts, making and selling widgets, researching and improving each part of the business, trying to make as much money as possible. The game board for each day resembles a spreadsheet from the 1980s (including the green-on-black text aesthetic).
+>Position: **6th**  
+>_Rating: 6.96_
 #### ZXFM
 ZXFM is a football management simulator for the Sinclair ZX Spectrum written in just 10 lines of BASIC! Play an entire season as manager of a team from your favourite league, or create your own leagues and teams. Manage injuries, buy and sell in the transfer market and save your progress to tape or disk as you go along. ZXFM was inspired by the original 1982 "Football Manager" game by Kevin Toms (which was also written in BASIC but used over 700 lines of code!)
-
+>Position: **3rd**  
+>_Rating: 9.50_
+## 2023
+### EXTREM-256
+#### BimMobiles
+The red car and the blue car had a race. Except these 'cars' are BimMobiles from the planet Bim. It is the year 3456, and the Bimmers are at war again. Their planet is exactly one half red, one half blue. The two factions battle it out in the BimMobiles arena in a bid to turn the planet entirely to their colour. 
+>Position: **19th**  
+>_Rating: 4.38_
+### SCHAU
+#### ZX Alarm Clock
+'ZX Alarm Clock' recreates the classic bedside alarm clock with 7 segment displays. It uses the 24 hour clock system. Designed for the Sinclair ZX Spectrum 16k/48k/128k.
+>Position: **4th**  
+>_Rating: 4.50_
+#### ZXFont
+The Sinclair Spectrum has a fixed font stored in ROM, but there is a trick that allows the computer to use custom fonts. This is a font editor written in just ten lines of BASIC code that lets the user create their own fonts and save them to tape for use in their own BASIC programs.
+>Position: **2nd**  
+>_Rating: 5.50_
+#### ZXWORD (ZX81)
+ZXWORD is a simple word processor application for the Sinclair ZX81 (16KB RAM pack required). Documents can be saved, loaded and printed as required.
+>Position: **3rd**  
+>_Rating: 4.80_
+## 2022
+### SCHAU
+#### Ten Liner Teletext
+Remember teletext? The simple information retrieval system broadcast to televisions around the
+world during the 1980s and 1990s? Well now you can relive the glory days of three-digit page
+numbers and blocky graphics as we bring you Ten Liner Teletext – a teletext simulator for the ZX
+Spectrum. 
+>Position: **5th**  
+>_Rating: 4.79_
 
 
 
