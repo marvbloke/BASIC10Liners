@@ -1,0 +1,69 @@
+   1 CLEAR 63999: PAPER 0: BORDE
+R 0: INK 4: CLS : PRINT FLASH 1;
+AT 10,4;" ZXFont is initialising
+ ";: FOR n=15616 TO 16383: POKE
+48384+n,PEEK n: NEXT n
+   2 DIM p$(4,46): FOR n=USR "a"
+ TO USR "c"+7: READ a: POKE n,a:
+ NEXT n: FOR n=1 TO 4: READ p$(n
+): NEXT n: DIM e(8): FOR n=1 TO
+8: LET e(n)=2^(n-1): NEXT n: LET
+ t=1: LET c=0: LET x=0: LET y=17
+   3 POKE 23607,60+(t*189): CLS
+: PRINT AT 21,24; INVERSE 1;p$(t
++3)( TO 8);: PRINT AT 20,0;p$(1)
+;: PRINT AT 17,0;: FOR n=32 TO 1
+27: PRINT CHR$ n;: NEXT n: DATA
+0,16,16,16,84,56,16,0,0,0,8,4,12
+6,4,8,0,0,0,16,32,126,32,16,0
+   4 PRINT INVERSE 1;AT 21,0;" C
+HR$     ";AT 21,6;c+32: PRINT AT
+ y,x; OVER 1; FLASH 1;" ";: PAUS
+E 0: LET k=CODE INKEY$: FOR n=k<
+>13 TO 0: GO TO 7: NEXT n: IF k=
+115 THEN INPUT "Name: "; LINE s$
+: SAVE s$CODE 64000,768
+   5 IF k>7 AND k<12 THEN PRINT
+AT y,x; OVER 1; FLASH 0;" ";: LE
+T x=x+((k=9 AND x<31)-(k=8 AND x
+>0)): LET y=y+((k=10 AND y<19)-(
+k=11 AND y>17)): LET c=((y-17)*3
+2)+x
+   6 FOR n=(k<>108) TO 0: PRINT
+AT 0,0: LOAD ""CODE 64000,768: G
+O TO 3: NEXT n: FOR n=(k<>116) T
+O 0: LET t=NOT t: GO TO 3: NEXT
+n: GO TO 4: DATA "           L
+  S    T          ","
+                     "," SYSTEM
+"," CUSTOM "
+   7 PRINT AT y,x; OVER 1; FLASH
+ 0;" ";: PRINT AT 20,0;p$(2);: P
+APER 1: FOR n=0 TO 7: LET b=PEEK
+ (64000+(c*8)+n): FOR m=7 TO 0 S
+TEP -1: PRINT AT 5+n,19-m;CHR$ (
+95+(b-(e(m+1))>=0)*48);: LET b=b
+-((e(m+1))*(b-(e(m+1))>=0)): NEX
+T m: NEXT n: LET cx=12: LET cy=5
+   8 PRINT AT cy,cx; OVER 1; FLA
+SH 1;" ": PAUSE 0: LET j$=INKEY$
+: LET j=CODE j$: FOR n=(j<7 OR j
+>12) TO 0: PRINT AT cy,cx; OVER
+1; FLASH 0;" ";: LET cx=cx+((j=9
+ AND cx<19)-(j=8 AND cx>12)): LE
+T cy=cy+((j=10 AND cy<12)-(j=11
+AND cy>5)): NEXT n
+   9 FOR n=(j<>13) TO 0: PRINT A
+T cy,cx; OVER 1; FLASH 0;" ";: P
+APER 0: PRINT AT 20,1; FLASH 1;"
+WAIT": GO TO 10: NEXT n: FOR n=(
+j<>48) TO 0: PRINT AT cy,cx;"_ "
+((SCREEN$ (cy,cx)="_")+1);: NEXT
+ n: GO TO 8
+  10 FOR n=0 TO 7: LET b=0: FOR
+m=7 TO 0 STEP -1: PRINT OVER 1;
+PAPER (SCREEN$ (5+n,19-m)<>"_")+
+1;AT 5+n,19-m;" ";: LET b=b+(ATT
+R (5+n,19-m)=84)*e(m+1): NEXT m:
+ POKE (64000+(c*8)+n),b: NEXT n:
+ GO TO 3

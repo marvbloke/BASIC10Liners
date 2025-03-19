@@ -1,0 +1,55 @@
+   1 BRIGHT 1: BORDER 0: PAPER 0
+: INK 7: CLS : DIM a$(4,20): DIM
+ s(2): DIM x(2): DIM y(2): LET s
+=1: RESTORE : FOR n=1 TO 4: READ
+ a$(n): NEXT n
+   2 DIM r(2): DIM d(2): FOR n=1
+ TO 2: LET x(n)=2+((n-1)*16)+INT
+ (RND*11): LET y(n)=2+INT (RND*1
+7): NEXT n
+   3 CLS : FOR n=0 TO 31: PRINT
+PAPER 7;AT n*(n<22),0;" ";AT 0,n
+;" ";AT n*(n<22),31;" ";AT 21,n;
+" ";: NEXT n: PRINT AT 0,10; PAP
+ER 1;" Bim";AT 21,2;s(1);AT 0,14
+; PAPER 2;"Mobiles ";AT 21,29;s(
+2);: IF s THEN LET s=0: GO SUB 9
+   4 FOR n=1 TO 2: PRINT PAPER n
+;AT y(n),x(n);" ";: NEXT n: FOR
+n=1 TO 3: PRINT AT 10,14; FLASH
+1;" ";4-n;" ";: FOR m=1 TO 100:
+NEXT m: NEXT n: PRINT AT 10,14;"
+   ";
+   5 FOR n=1 TO 2: PRINT PAPER n
+;AT y(n),x(n);" ";: NEXT n: LET
+k=(CODE INKEY$): LET j=IN 31
+   6 FOR n=(k<8 OR k>11) TO 0: L
+ET r(1)=(k=9)-(k=8): LET d(1)=(k
+=10)-(k=11): NEXT n: FOR n=(j<>1
+ AND j<>2 AND j<>4 AND j<>8) TO
+0: LET r(2)=(j=1)-(j=2): LET d(2
+)=(j=4)-(j=8): NEXT n: FOR n=1 T
+O 2: LET x(n)=x(n)+r(n): LET y(n
+)=y(n)+d(n): NEXT n
+   7 FOR n=1 TO 2: FOR m=(((ATTR
+ (y(n),x(n))=71) OR (r(n)+d(n))=
+0)) TO 0: LET w=(NOT (n-1))+1: L
+ET s(w)=s(w)+1: PRINT PAPER w;AT
+ 0,10;" BimMobiles ";AT 21,2+((w
+-1)*27); FLASH 1;s(w): FOR o=1 T
+O 200: NEXT o: GO TO 2+(s(w)=5)*
+8: NEXT m: NEXT n: GO TO 5
+   8 DATA "First to 5 pts","P1>
+arrow keys","P2>  kempston","ENT
+ER to start"
+   9 FOR n=1 TO 4: FOR m=1 TO 8:
+ PRINT AT n,7+m;" ";AT n,24-m;"
+";: NEXT m: PRINT AT n,9; OVER 1
+;a$(n);: NEXT n: PAUSE 0: FOR n=
+INKEY$<>CHR$ 13 TO 0: FOR o=1 TO
+ 4: FOR m=1 TO 8: PRINT AT o,7+m
+;" ";AT o,24-m;" ";: NEXT m: NEX
+T o: RETURN : NEXT n: GO TO 9
+  10 PRINT AT 21,12; FLASH 1; PA
+PER w;" Winner ";: FOR n=1 TO 50
+0: NEXT n: GO TO 1

@@ -1,0 +1,23 @@
+   1 LET D$=""                  
+   2 PRINT AT 21,0;"?*D DEL?*P P
+RINT?*S SAVE????????";AT 0,0;"?Z
+XWORD?????????????????????????";
+D$;"?";                         
+   3 INPUT I$                   
+   4 IF I$<>"" AND LEN D$<639 TH
+EN IF I$(1)<>"*" THEN LET D$=D$+
+I$                              
+   5 IF I$<>"" THEN IF I$(1)="*"
+ THEN IF I$(2)="S" THEN SAVE I$(
+3 TO )                          
+   6 IF I$="*P" THEN LPRINT D$  
+   7 IF I$<>"" THEN IF I$(1)="*"
+ THEN IF I$(2)="D" THEN LET D$=D
+$(1 TO (LEN D$-(VAL I$(3 TO ))))
+   8 IF I$="" AND LEN D$<608 THE
+N LET D$=D$+"                   
+             "(1 TO (32-((LEN D$
+)-(32*INT (LEN D$/32)))))       
+   9 IF I$<>"" THEN IF I$(1)="*"
+ THEN IF I$(2)="D" THEN CLS     
+  10 GOTO 2                     
