@@ -1,0 +1,52 @@
+   1 BORDER 0: PAPER 0: BRIGHT 1: INK 4: CLS : DIM o(6): DIM p(3,4,4): FOR n=0 T
+O 71: READ a: POKE USR "a"+n,a: NEXT n: FOR n=1 TO 3: FOR m=1 TO 3: FOR p=1 TO 4
+: READ p(n,m+(n=1),p): NEXT p: NEXT m: NEXT n: READ t$,u$,v$,w$,x$: PRINT "PLAYE
+RS?": PAUSE 0: RANDOMIZE : LET mp=VAL (INKEY$): DIM s(6+mp): FOR n=1 TO 6: READ 
+o(n),s(n): NEXT n: DIM g(mp+2,8,9,5): DIM l(mp,3): DIM m(mp): FOR n=1 TO mp: LET
+ g(n,1,1,1)=10: NEXT n
+   2 FOR d=1 TO 6: FOR p=1 TO mp: FOR x=NOT s(6+p) TO 0: LET s(6+p)=0: GO TO 8: 
+NEXT x: LET g(p,d,9,1)=o(d): INVERSE 0: CLS : PRINT t$'"BUY  L";l(p,1)+1': FOR n
+=1 TO 4: PRINT CHR$ (144+n);" ?";p(1,n,l(p,1)+1);" ?";n: NEXT n: PRINT '"MAKE L"
+;l(p,2)+1;: FOR n=1 TO 3: PRINT 'CHR$ (148+n);" ?";p(2,n,l(p,2)+1);" ";: FOR m=0
+ TO n: PRINT CHR$ (145+m);: NEXT m: NEXT n: PRINT ''"SELL L";l(p,3)+1': FOR n=1 
+TO 3
+   3 PRINT CHR$ (148+n);" ?";p(3,n,l(p,3)+1);" ?";s(n): NEXT n: PRINT AT 0,9; IN
+VERSE 1;" DAY ";d;" PLAYER ";p;TAB 32: PRINT AT 1,13;u$: FOR n=0 TO 8: PRINT AT 
+n+2,10;CHR$ (144+n): NEXT n: PLOT 71,175: DRAW 0,-89: DRAW 184,0: FOR n=1 TO 6: 
+PLOT 63+n*32,167: DRAW 0,-80: NEXT n: GO SUB 10: LET t=0: LET o=0: LET r=1+INT (
+RND*6): PRINT AT 2,1; INVERSE 1;" ?";r;" ": FOR n=1 TO 4: PRINT AT 2+n,16; OVER 
+1; FLASH 1;v$;AT 20,0;
+   4 FOR q=1 TO mp*(d>1): PRINT INVERSE 1;" P";q;"?";m(q);: NEXT q: PRINT INVERS
+E 1;" ";TAB 32: FOR m=0 TO 1: INPUT z: LET z=ABS z: LET m=(g(p,d,1,1)-t-z*n)>-1 
+AND o+z*p(1,n,l(p,1)+1)<=r: NEXT m: LET t=t+z*n: LET g(p,d,1+n,2)=z: PRINT AT 2+
+n,16; OVER 1; FLASH 0;v$: LET o=o+z*p(1,n,l(p,1)+1): GO SUB 10: NEXT n: LET g(p,
+d,1,2)=-t: LET g(p,d,9,2)=-o: PRINT AT 2,1;v$: GO SUB 10
+   5 LET o=0: LET r=1+INT (RND*6): PRINT AT 2,1; INVERSE 1;" ?";r;" ": FOR n=1 T
+O 3: PRINT AT 6+n,20; OVER 1; FLASH 1;v$: FOR m=0 TO 1: LET c=1: INPUT z: LET z=
+ABS z: FOR q=1 TO n+1: LET c=c*((g(p,d,1+q,2)+g(p,d,1+q,1)+g(p,d,1+q,3))>=z): NE
+XT q: LET m=(o+z*p(2,n,l(p,2)+1)<=r) AND c: NEXT m: PRINT AT 6+n,20; OVER 1; FLA
+SH 0;v$: DATA 0,255,195,153,195,255,0,0,0,124,126,98,98,98,62,0,0,16
+   6 FOR q=1 TO n+1: LET g(p,d,1+q,3)=g(p,d,1+q,3)-z: NEXT q: LET g(p,d,5+n,3)=z
+: LET o=o+z*p(2,n,l(p,2)+1): GO SUB 10: NEXT n: LET g(p,d,9,3)=-o: PRINT AT 2,1;
+v$: GO SUB 10: LET o=0: LET t=0: LET r=1+INT (RND*6): PRINT AT 2,1; INVERSE 1;" 
+?";r;" ": FOR n=1 TO 3: PRINT AT 6+n,24; OVER 1; FLASH 1;v$: FOR m=0 TO 1: INPUT
+ z: LET z=ABS z: LET m=g(p,d,5+n,1)+g(p,d,5+n,3)>=z AND o+z*p(3,n,l(p,3)+1)<=r: 
+NEXT m
+   7 LET t=t+z*s(n): LET g(p,d,5+n,4)=-z: PRINT AT 6+n,24; OVER 1; FLASH 0;v$: L
+ET o=o+z*p(3,n,l(p,3)+1): GO SUB 10: NEXT n: LET g(p,d,9,4)=-o: LET g(p,d,1,4)=t
+: PRINT AT 2,1;v$: FOR n=1 TO 9: LET t=0: FOR m=1 TO 4: LET t=t+g(p,d,n,m): NEXT
+ m: LET g(p,d,n,5)=t: NEXT n: GO SUB 10: LET s(6+p)=g(p,d,9,5)<0: FOR n=1 TO 9: 
+LET g(p,d+1+s(6+p),n,1)=g(p,d,n,5): NEXT n: LET m(p)=g(p,d,1,5)
+   8 INVERSE 1: LET r=1+INT (RND*6): FOR n=g(p,d,9,5)<r OR d=6 TO 0: PRINT AT 2,
+1;" ?";r;" ";AT 20,0;x$;: FOR m=0 TO 1: PAUSE 0: LET z=VAL (INKEY$): LET m=l(p,z
+)<3: NEXT m: LET l(p,z)=l(p,z)+1: NEXT n: PRINT AT 20,0;"PRESS A KEY";TAB 32' IN
+K (4*(s(6+p) AND d<6));"BURNOUT! MISS A DAY";TAB 32;: PAUSE 0: NEXT p: NEXT d: P
+RINT AT 20,0;"SCORES:";: FOR n=1 TO mp: PRINT " P";n;"?";m(n);: NEXT n: PRINT TA
+B 32;: PAUSE 0
+   9 RUN : DATA 50,209,149,209,50,16,96,255,96,6,255,6,96,255,0,60,231,36,231,36
+,231,60,60,66,90,66,90,90,66,60,124,130,186,130,170,138,130,124,126,255,255,255,
+171,171,129,126,60,66,157,141,149,161,66,60,1,0,0,0,2,1,0,0,3,2,1,0,1
+  10 FOR x=1 TO 5: FOR y=1 TO 9: LET z=g(p,d,y,x): PRINT AT 1+y,13+(x-1)*4-(z<0)
+; INK 4*(z<>0);z: NEXT y: NEXT x: RETURN : DATA 0,0,0,2,1,0,0,3,2,1,0,2,1,0,0,3,
+2,1,0,4,3,2,1,"HARDWARE"+CHR$ 13+"HUSTLE"+CHR$ 13+CHR$ 13,"AM BUY MAKESELL PM","
+    ","PLAYERS?","RESEARCH? (1=BUY 2=MAKE 3=SELL)",12,6,12,18,8,40,8,0,4,0,4,0

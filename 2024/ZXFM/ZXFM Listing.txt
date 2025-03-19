@@ -1,0 +1,53 @@
+   1 LET tt=20: LET w=1: DIM t$(tt,18): DIM p$(18,14): DIM o$(18): LET i=0: DIM 
+l(tt): DIM r(tt): DIM s(18): DIM t(tt): BORDER 7: PAPER 7: BRIGHT 1: INK 0: CLS 
+: DEF FN r(y)=INT (RND*y): READ o$,q$,d$,e$,j$,a$,g$,k$,l$,i$,m$,c$: PRINT a$;0;
+TAB 32: FOR n=1 TO tt: LET t$(n)=CHR$ 17+CHR$ 1+CHR$ 16+CHR$ 7+"Team "+STR$ n: L
+ET l(n)=n: LET r(n)=86-n: PRINT n;TAB 3;t$(n): NEXT n: DATA "GDDDDMMMMSSGDMS","N
+ext game:"
+   2 DIM q(20): DEF FN c(y)=7+INT ((y-70)/23*100)/10: LET a=0: INPUT (d$);(tt);"
+) ";t: PRINT i$: GO SUB 10: FOR n=1 TO 18: LET q(n)=n: FOR m=n>15 TO 0: LET z=1+
+4*FN r((LEN c$)/4): LET p$(n)=CHR$ (65+FN r(23))+"."+c$(z TO z+3): LET s(n)=r(t)
++FN r(20)-9: LET a=a+s(n)*(n<12): NEXT m: NEXT n: LET r(t)=INT (a/11): DATA "Tea
+m (1-",CHR$ 20+CHR$ 1+"Rtg Pld Pts"
+   3 RANDOMIZE : BRIGHT 1: CLS : PRINT a$;w;TAB 32;"No Team";TAB 17;e$;TAB 32: F
+OR n=1 TO tt: PRINT n;TAB 3;t$(l(n));: PRINT r(l(n));TAB 21;f;TAB 25;t(l(n)): NE
+XT n: PRINT #1;j$: PAUSE 0: FOR n=INKEY$<>"r" TO 0: INPUT "No?"'r;TAB 2;">"; LIN
+E w$;" i";j;" p";p: LET t$(l(r))=CHR$ 17+CHR$ p+CHR$ 16+CHR$ j+w$: GO TO 3: NEXT
+ n: CLS : PRINT INVERSE 1;a$;w;TAB 18;l$;TAB 32: PRINT AT 1,3;t$(t): DATA "R:Ren
+ame team",CHR$ 20+CHR$ 1+" ZXFM W","GDMS"
+   4 PRINT AT 1,0: LET z=0: FOR n=1 TO 18: LET y=s(q(n)): PRINT BRIGHT n<12;n;TA
+B 3; INK 7-7*(y>0)+2*(i=q(n));p$(q(n));TAB 18;y;TAB 23;o$(q(n));" `";FN c(y);"m"
+;TAB 32: LET z=z+y*(n<12)*(i<>q(n)): NEXT n: LET r(t)=INT (z/11): PRINT #1;AT 1,
+0;m$: IF w<=(tt*2) THEN LET g=CODE f$(w)-96: PRINT INVERSE 1;AT 1,18;r(t);TAB 25
+;"`";q(19);"m ": PRINT AT 20,0;q$;t$(g);: IF g=t THEN PRINT AT 20,10;k$;
+   5 PRINT TAB 32: PAUSE 0: LET n$=INKEY$: FOR n=n$<>"n" TO 0: INPUT m: IF m<19 
+THEN IF s(q(m))>0 THEN INPUT (m);">"; LINE p$(q(m)): NEXT n: FOR n=n$<>"s" TO 0:
+ INPUT LINE s$: SAVE s$ LINE 3: NEXT n: FOR n=n$<>"m" TO 0: INPUT m;">";o: IF s(
+q(m))>0 AND o$(q(m))=o$(q(o)) THEN LET z=q(o): LET q(o)=q(m): LET q(m)=z: NEXT n
+: IF n$="b" AND NOT q(20) THEN LET z=1+4*FN r((LEN c$)/4): LET u$=CHR$ (65+FN r(
+23))+"."+c$(z TO z+3): LET v$=g$(1+FN r(4))
+   6 FOR n=n$<>"b" OR q(20)=1 TO 0: LET q(20)=1: LET m=r(t)+FN r(20)-9: LET o=(4
+0+FN r(99))/10: PRINT AT 20,0;u$;" ";v$;" (";m;") `";o;"m?";TAB 32;: PAUSE 0: FO
+R q=INKEY$<>"y" OR o> q(19) TO 0: LET q(19)=q(19)-o: FOR z=12 TO 18: LET d=q(z):
+ FOR y=s(d)>0 TO 0: LET p$(d)=u$: LET o$(d)=v$: LET s(d)=m: LET z=19: NEXT y: NE
+XT z: NEXT q: GO TO 4: NEXT n: GO TO 4-(n$="t")+3*(n$="e" OR n$="p")
+   7 FOR n=n$<>"e" TO 0: INPUT z: LET y=s(q(z)): IF y THEN LET q(19)=q(19)+FN c(
+y): LET s(q(z))=0: GO TO 4: NEXT n: LET w=w+1: LET q(19)=q(19)+FN r(50)/10: LET 
+q(20)=0: CLS : PRINT a$;w-1;TAB 32: PRINT t$(t);: PRINT " vs ";t$(g): LET l=1: D
+IM b(2,2): LET b(1,1)=t: LET b(1,2)=g: FOR m=1 TO 91+FN r(9): PRINT AT 1,14;b(2,
+1);"__";b(2,2);#1;AT 0,0; PAPER 4-2*(m>90);m;":00": IF g=t OR w>41 THEN GO TO 3
+   8 PAUSE 1+99*(m=45): FOR o=1 TO 2: FOR n=RND*(99-r(b(1,o)))>0.3 TO 0: PRINT #
+1;AT l,0;"GOAL!(";m;")";t$(b(1,o)): PRINT #1; INK 7*(o=2);p$(q(7+FN r(5))): LET 
+l=l+(3-o): LET b(2,o)=b(2,o)+1: NEXT n: NEXT o: NEXT m: FOR o=1 TO 2: LET t(b(1,
+o))=t(b(1,o))+(b(2,1)=b(2,2))+3*(b(2,o)> b(2,3-o)): NEXT o: PRINT 'i$: LET f=f+1
+: DATA "International break"
+   9 LET i=1+FN r(18): LET i=i* (FN r(3)>0)*(s(i)>0): FOR n=1 TO tt: FOR m=n=t O
+R n=g TO 0: LET y=FN r(r(n))> 40: LET t(n)=t(n)+y+2*y*(FN r(r(n))> 40): NEXT m: 
+NEXT n: FOR n=1 TO tt: LET s=0: FOR o=1 TO tt-1: LET c=l(o): LET d=l(o+1): FOR z
+=t(c)>=t(d) TO 0: LET s=1: LET y=c: LET l(o)=d: LET l(o+1)=y: NEXT z: NEXT o: FO
+R m=NOT s TO 0: NEXT n: NEXT m: GO TO 3: DATA CHR$ 20+CHR$ 1+"Rtg Pos Money No"
+  10 LET f=0: DATA CHR$ 18+CHR$ 1+"WAIT",CHR$ 20+CHR$ 1+"MoveNamesSaveTable Buy 
+sEll Play","ShawCookDunnLaneReedWardHallHuntCarrBeck": LET f$="": FOR n=1 TO tt:
+ LET f$=f$+CHR$ (97+tt-n)+CHR$ (96+n): NEXT n: FOR n=1 TO tt+6: LET z=1+INT (RND
+*tt*2): LET y=1+INT (RND*tt*2): LET w$=f$(y): LET f$(y)=f$(z): LET f$(z)=w$(1): 
+NEXT n: RETURN 

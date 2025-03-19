@@ -1,0 +1,20 @@
+   1 BORDER 7: PAPER 7: INK 1: INVERSE 1: READ x$,c,s,i,z$: CLS : PRINT " ZXSE";
+TAB 26;"`";INT c;TAB 32: DIM s$(9,3): DIM s(9,2): DIM b$(2,32)
+   2 READ y$: DEF FN r(x)=INT (RND*x): FOR n=1 TO 9: FOR o=1 TO 3: LET s$(n,o)=C
+HR$ (65+FN r(26)): NEXT o: LET s(n,1)=500+FN r(5500)
+   3 NEXT n: FOR d=1 TO 31: FOR h=8 TO 15: GO SUB 10: PRINT AT 19,0; INK 2;z$;d;
+"/7/1982";TAB 26;"00:00 ";AT 19,26+(h<10);h
+   4 FOR m=0 TO 59 STEP 2: PRINT INK 2;AT 19,29+(m<10);m;TAB 32; INK 0; PAPER 6;
+b$(1, TO 32);b$(2, TO 32): LET k$=INKEY$: FOR o=1 TO 2
+   5 LET b$(o)=b$(o,2 TO )+b$(o,1): NEXT o: LET t=1e3: FOR z=k$="" TO 0: IF k$>"
+0" AND k$<":" THEN LET s=VAL k$: DATA "Buy Sell"
+   6 PRINT AT 0,9;x$: FOR n=k$<>"b" OR c<=(s(s,1)/t) TO 0: LET c=c-s(s,1)/t: LET
+ s(s,2)=s(s,2)+1: NEXT n: DATA 200,1,0
+   7 FOR n=k$<>"s" OR s(s,2)<1 TO 0: LET s(s,2)=s(s,2)-1: LET c=c+s(s,1)/t: NEXT
+ n: PRINT AT 0,27;INT c;TAB 32: GO SUB 10: NEXT z: NEXT m
+   8 DIM b$(2,54): FOR n=1 TO 9: LET a=-99+FN r(200): LET s(n,1)=s(n,1)+a: LET b
+$(1,-5+n*6 TO n*6)=s$(n): DATA " "
+   9 LET b$(2,-5+n*6 TO n*6)=STR$ (a/10)+"p": NEXT n: NEXT h: NEXT d: PAUSE 0: R
+UN : DATA CHR$ 16+CHR$ 4+CHR$ 17+CHR$ 0+CHR$ 20+CHR$ 0+CHR$ 18+CHR$ 1
+  10 FOR n=1 TO 9: PRINT AT 4+n,7; FLASH n=s; PAPER 4; INK 0;z$;n;z$;s$(n);z$;s(
+n,1)/10;"p";TAB 21;s(n,2);TAB 25: NEXT n: RETURN 
