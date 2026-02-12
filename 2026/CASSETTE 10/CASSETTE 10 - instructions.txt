@@ -11,7 +11,7 @@ Players: 1
 
 10 games. 10 lines. 1 homage.
 
-In 1983, CASSETTE 50 filled a whole tape with questionable code and grand promises. In 2026, we’ve mastered the squeeze. CASSETTE 10 takes the "quantity-over-quality" spirit of the original bargain-bin classic and condenses ten 'original' games into a single ten-line masterstroke.
+In 1983, CASSETTE 50 filled a whole tape with questionable code and grand promises. In 2026, we’ve mastered the squeeze. CASSETTE 10 takes the "quantity-over-quality" spirit of the original bargain-bin classic and condenses ten 'original' games into a single ten-line masterpiece.
 
 Note: Unlike the original, CASSETTE 10 does not come with a free Timex calculator watch. We spent the budget on extra colons instead.
 
@@ -25,13 +25,13 @@ The game will load and automatically start.
 
 --= FEATURES =--
 
-'CASSETTE 10' is inspired by the original CASSETTE 50 released by Cascade Games in 1983, which promised an incredible value proposition: 50 games on a single cassette tape for just £9.95 (with a free calculator watch!). For a kid in the 80s, that sounded like a goldmine. In reality, it was more of a digital bargain bin. It definitely favoured quantity over quality!
+'CASSETTE 10' is a games compilation inspired by the original CASSETTE 50 released by Cascade Games in 1983. It promised an incredible value proposition: 50 games on a single cassette tape for just £9.95 (with a free calculator watch!). For a kid in the 80s, that sounded like a goldmine. In reality, it was more of a digital bargain bin. It definitely favoured quantity over quality!
 
 CASSETTE 10 features:
 
 - 10 complete games: Hangman, Shoot, Lawn, Simon, Wall, Guitar, Blast, Fast Food, Rock Paper Scissors and Guess
-- The games cover several genres: word games, action, arcade, simulation, board games and music rhythm
-- Game selection screen (press '1' to '0' to choose one of ten games)
+- The games cover several genres, including word games, action, arcade, simulation, board games and music rhythm
+- Game selection screen (press a number key to choose one of ten games)
 - Full colour and incredible sound
 - No loading times between games
 
@@ -94,7 +94,7 @@ Press any key to unleash a horizontal laser blast at the enemy star * — but be
 
 Press any key to change vertical direction and fire your laser at the same time. Hit the enemy stars '*' to gain points. Avoid the top and bottom of the narrow screen or its game over. Press a key at the end of the game to return to the CASSETTE 10 game menu.
 
-Inspired by Switch 'N' Shoot by Matt Glanville.
+Inspired by Switch 'N' Shoot (2016) by Matt Glanville.
 
 --= GAME 8: FF (Fast Food) =--
 
@@ -127,7 +127,8 @@ I loved the old CASSETTE 50 compilation, and I had seen a previous 10-liner atte
 - 10 games in 10 lines
 - Include a game selection screen also within the same 10 lines
 - Have the aesthetic of the old Cascade Games CASSETTE 50 compilation
-- Aim for 10 different game genres
+- Aim for lots of different game genres
+- They shouldn't all be text based, there should be some graphics and UDGs
 - Squeeze in a reference to the old April Fool's joke lawnmower simulator (see 'Lawn')
 - Write a 'Switch n Shoot' clone in 1 line of BASIC (see 'Blast')
 
@@ -264,7 +265,6 @@ k$ - key pressed
 o - IF statement
 k - value of key pressed
 c - random choice for computer's move (between 1 and 3)
-
 
 --= APPENDIX D - FUNCTIONS =--
 
