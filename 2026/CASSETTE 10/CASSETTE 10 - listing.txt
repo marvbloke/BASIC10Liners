@@ -1,0 +1,59 @@
+   1 DEF FN r(x)=1+INT (RND*x): FOR q=1 TO 1e9: BORDER 1: PAPER 6: INK 0: CLS : 
+PRINT "CASSETTE 10"''"1.Hangman"'"2.Shoot"'"3.Lawn"'"4.Simon"'"5.Wall"'"6.Guitar
+"'"7.Blast"'"8.FF"'"9.o?x"'"0.Guess": PAUSE 0: FOR z=INKEY$<"1" OR INKEY$>"9" TO
+ 0: GO SUB 1+VAL INKEY$: NEXT z: LET a=FN r(99): CLS : FOR z=INKEY$<>"0" TO 0: I
+NPUT "1-99? ";b: PRINT "h!l"(2+SGN (b-a)): LET z=-(a<>b): PAUSE -z: NEXT z: NEXT
+ q
+   2 RANDOMIZE : RESTORE 2: READ f,a,d$,a$: LET b=FN r(a): LET c$=a$(5*b-4 TO 5*
+b): BORDER 6: PAPER 5: INK 0: CLS : FOR d=1 TO 1e9: PAUSE 0: LET k$=INKEY$: LET 
+e=1: FOR b=1 TO 5: FOR c=c$(b)<>k$ TO 0: LET e=0: LET d$(b)=k$: NEXT c: NEXT b: 
+FOR c=NOT e TO 0: PRINT AT 3,(CODE k$)-96;k$: LET f=f-1: NEXT c: LET d=d+1e9*(f<
+1 OR d$=c$): PRINT AT 0,0;d$;TAB 29;f: NEXT d: BEEP .5,9: PAUSE 0: RETURN : DATA
+ 6,7,"_____","cigarrebutsissyhumphawakeblushfocal"
+   3 LET s=0: LET d=16: FOR a=0 TO 9: BORDER 0: PAPER 5: INK 0: CLS : PLOT 0,47:
+ DRAW 255,0: LET b=FN r(28): LET e=FN r(5): PRINT AT 0,12;s;" of ";a;AT 5,b; INK
+ FN r(4); FLASH 1;"@": FOR c=1 TO 1e9: PAUSE e: LET d=d-1+30*(d=0): PRINT AT 15,
+0;" ";AT 15,d;"^ ": LET c=c+1e9*(INKEY$<>""): NEXT c: PLOT 3+8*d,55: DRAW FLASH 
+(d=b); INK 2;0,79: BEEP .1,30*(d=b): PAUSE 1: PAUSE 30: LET s=s+(d=b): NEXT a: P
+RINT FLASH 1;AT 0,12;s;" of 10": PAUSE 0: RETURN 
+   4 RESTORE 5: LET y=21: LET x=29: FOR n=0 TO 23: READ a: POKE USR "a"+n,a: NEX
+T n: BORDER 4: PAPER 5: INK 0: CLS : PAPER 4: PLOT 100,112: DRAW 0,30: DRAW 20,2
+0: DRAW 20,-20: DRAW 0,-30: CIRCLE 200,150,15: PRINT AT 7,0: FOR n=1 TO 448: PRI
+NT "?";: NEXT n: FOR a=1 TO 1e9: FOR b=x<>30 TO 0: PRINT AT y+1,0; INK 7;"???";:
+ NEXT b: PRINT AT y,x;"??"; INK 7;"?";: PAUSE 0: FOR b=INKEY$<>"m" TO 0: LET x=x
+-1: LET y=y-(x<0): LET x=x+(x<0)*31: NEXT b: LET a=a+1e9*(y=7): NEXT a: RETURN 
+   5 LET a=1: PAPER 7: BORDER 7: CLS : DIM z(99): FOR m=1 TO 1e9: LET z(a)=FN r(
+4): FOR b=1 TO a: BORDER z(b): BEEP .5,3*z(b): PAUSE 9: BORDER 0: PAUSE 9: NEXT 
+b: FOR b=1 TO a: PAUSE 0: LET k$=INKEY$: LET c=k$=STR$ z(b): BORDER z(b)*c: BEEP
+ .5,3*z(b)*c: BORDER 0: LET b=b+a*NOT c: NEXT b: LET a=a+c: LET m=m+1e9*NOT c: P
+RINT AT 9,15;a-1: PAUSE 20: NEXT m: RETURN : DATA 68,85,85,17,128,170,170,40,0,0
+,0,0,0,31,110,110,24,24,8,104,152,16,44,68
+   6 RESTORE 6: DIM z$(32): READ x: FOR n=0 TO 7: READ a: POKE USR "a"+n,a: NEXT
+ n: BORDER 7: PAPER 0: INK 6: FOR n=1 TO 10: CLS : LET g=FN r(20): BEEP .1,n*2: 
+FOR m=1 TO 20: PRINT AT 20,x;" ? ";AT m,0;z$; INVERSE 1;z$; INVERSE 0;AT m+1,g;"
+ ";AT 0,0;11-n: LET x=x-(INKEY$="o" AND x>0)+(INKEY$="p" AND x<28): LET n=n+9*(g
+<>x+1 AND m=20): NEXT m: NEXT n: BORDER 2+(g=x+1)*2: BEEP .5,25*(g=x+1): PAUSE 1
+: PAUSE 0: RETURN : DATA 15,8,93,127,93,28,93,127,73
+   7 LET a$="00060069060420010006006964242100000": DIM b$(9): BORDER 0: PAPER 0:
+ INK 0: CLS : PAPER 7: FOR n=9 TO 13: PRINT AT n,10;"|";b$;"|";AT 14,11;"1234567
+89": NEXT n: FOR n=1 TO -5+LEN a$: FOR m=1 TO 5: LET a=VAL a$(n+m): PRINT AT 14-
+m,11;b$;AT 14-m,10+a-(a=0); PAPER 7*(a<>0);a: BEEP .2*(INKEY$<>""),(a$(n)=INKEY$
+)*VAL a$(n): NEXT m: NEXT n: PAUSE 1: PAUSE 0: RETURN : DATA 6,1,0
+   8 RESTORE 7: READ y,d,s: BORDER 2: PAPER 2: INK 2: CLS : PAPER 0: FOR o=1 TO 
+1e9: DIM b$(320): FOR n=1 TO 20: LET b$(FN r(320))=".": NEXT n: LET e=FN r(9): L
+ET b$(32*e)="*": FOR m=1 TO 32: LET y=y+d: PRINT AT y,0;">": LET a=1e9*(y<6 OR y
+>15): LET m=m+a: PRINT AT 6,0; INK 7;b$: LET b$=b$(2 TO )+b$(1): FOR p=INKEY$=""
+ TO 0: LET d=d*-1: PLOT 8,171-y*8: DRAW 247,0: FOR r=e<>y-5 TO 0: LET s=s+1: NEX
+T o: NEXT r: NEXT p: PRINT AT 0,15;s: NEXT m: PAUSE 1: PAUSE 0: RETURN 
+   9 RESTORE 9: BORDER 1: PAPER 1: INK 1: CLS : PAPER 7: READ j$,o,f$: DIM f(4):
+ FOR t=1100 TO 2300 STEP 4: FOR e=(f(1)+f(2)+f(3)+f(4))>0 TO 0: LET o=o+1: FOR f
+=1 TO 4: LET f(f)=FN r(4)-1: NEXT f: NEXT e: PRINT AT 0,9;INT (t/100);":00 Score
+:";o''"Order #";o+1: FOR e=1 TO 4: LET k=INKEY$=j$(e): LET f(e)=f(e)-(k AND f(e)
+>0)+5*(k AND NOT f(e)): PRINT f(e);TAB 2;f$(-5+6*e TO 6*e): NEXT e: NEXT t: PAUS
+E 0: RETURN : DATA "pbkc",-1
+  10 LET a$="o?x": LET a=0: LET b=0: BORDER 1: PAPER 1: INK 7: CLS : FOR m=1 TO 
+99: PRINT AT 0,0;"123"'a$''"?   <": PAUSE 0: LET k$=INKEY$: FOR o=k$<"1" OR k$>"
+3" TO 0: LET k=VAL k$: PRINT AT 3,3;a$(k);AT 3,1;: PAUSE 9: LET c=FN r(3): PRINT
+ a$(c): LET a=a+(k=((c+3*(c=1))-1)): LET b=b+(c=((k+3*(k=1))-1)): NEXT o: PRINT 
+a;"   ";b: PAUSE 0: LET m=m+99*(a=3 OR b=3): NEXT m: RETURN : DATA "parmo burger
+kebab chips "
