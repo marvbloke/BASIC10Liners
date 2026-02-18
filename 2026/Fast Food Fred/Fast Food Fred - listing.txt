@@ -1,0 +1,50 @@
+   1 BRIGHT 1: BORDER 0: PAPER 0: INK 2: CLS : BEEP .15,3: PRINT "????": BEEP .2
+,5: PRINT "?ast": BEEP .2,6: INK 6: PRINT " ????": BEEP .2,10: PRINT " ?ood": BE
+EP .5,8: INK 2: PRINT "  ????": PAUSE 20: PRINT "  ?red": DIM b$(16): INK 9: PAP
+ER 8: READ d$,r$,r,c: DEF FN r(x)=1+INT (RND*x): DIM i(9,3): DIM i$(10,10): DIM 
+m$(11,2,12): DIM c(11): FOR n=1 TO 9: READ i$(n),i(n,1): NEXT n: FOR n=1 TO 11: 
+READ m$(n,1),m$(n,2),c(n): PRINT AT 11,17;r$
+   2 NEXT n: GO SUB 10: DEF FN c(x)=INT (x*100)/100: FOR d=1 TO 5: DIM d(5): DIM
+ o(3,3,3): GO SUB 8: LET t=1600+FN r(20): FOR h=1600 TO 2305 STEP 4: PRINT AT 0,
+5; PAPER 2;d$(-4+d*5 TO d*5);" ";INT (h/100);":00";AT 1,6;"`";FN c(c);TAB 16: FO
+R n=1 TO 9: PRINT AT n-1,17; PAPER 0; FLASH (i(n,2)>0);n; PAPER 6; FLASH 0;i$(n)
+;TAB 31-(i(n,3)>9);i(n,3); OVER 1; INVERSE 1;AT n-1,18;b$( TO (i(n,2)/i(n,1)*14)
+)
+   3 LET k$=INKEY$: FOR x=k$="" TO 0: FOR m=k$<"1" OR k$>"9" TO 0: FOR o=i(VAL k
+$,2)>0 TO 0: LET i(VAL k$,2)=1: LET d(1)=d(1)+.5: BEEP .01,VAL k$: PRINT AT -1+V
+AL k$,17; OVER 1; FLASH 1;" ": NEXT o: NEXT m: LET r=r+(k$ ="p" AND r<11)-(k$ ="
+o" AND r>1): FOR m=k$<>"p" AND k$<>"o" TO 0: GO SUB 10: NEXT m: FOR l=k$<"a" OR 
+k$>"c" TO 0: LET a=-96+CODE k$: FOR w=o(a,1,1)=0 TO 0: BORDER 7: LET i=0: LET j=
+0: FOR m=1 TO 3: FOR p=1 TO o(a,m,2)
+   4 LET b=o(a,m,1): FOR y=1 TO 12: FOR z=m$(b,2,y)=" " TO 0: LET f=VAL m$(b,2,y
+): LET g=i(f,3)>0: LET i=i+NOT g: LET i(f,3)=i(f,3)-g: NEXT z: NEXT y: LET j=j+c
+(b): NEXT p: NEXT m: BORDER 2+2*(i=0): BEEP .5,9*(i=0): BORDER 0: IF i=0 THEN LE
+T d(2)=d(2)+j: LET d(4)=d(4)+1: FOR p=2 TO 5: PRINT AT 5*a+p,0; PAPER 0;b$: NEXT
+ p: FOR p=1 TO 3: LET o(a,p,1)=0: LET o(a,p,2)=0: NEXT p: NEXT w: NEXT l
+   5 NEXT x: LET a=i(n,2): LET i(n,3)=i(n,3)+(a=i(n,1)): LET i(n,2)=(a+(a> 0))*(
+a< i(n,1)): NEXT n: FOR x=t>h TO 0: LET t=h+FN r(40): LET a=FN r(3): FOR y=o(a,1
+,1)>0 TO 0: BORDER 6: LET a$="abcdefghijk": FOR z=1 TO FN r(3): LET b=FN r(LEN a
+$): LET o(a,z,1)=-96+CODE a$(b): LET o(a,z,2)=1+(RND<.2)+(RND<.2): LET o(a,1,3)=
+h: LET a$=a$( TO (b-1))+a$((b+1) TO ): NEXT z
+   6 BEEP .1,10: BEEP .1,8: GO SUB 8: BORDER 0: NEXT y: NEXT x: LET h=h+25*(INKE
+Y$="f"): NEXT h: BEEP 1,8: FOR n=1 TO 9: LET d(3)=d(3)+.5*i(n,3): LET i(n,2)=0: 
+LET i(n,3)=0: PRINT PAPER 2;AT n-1,17;b$( TO 15): NEXT n: LET d(5)=d(2)-d(1)-d(3
+): LET c=c+d(5): DATA "Tues Wed  ThursFri  Sat  "
+   7 PRINT AT 1,18;"Orders ";d(4);AT 2,18;"Costs `";-FN c(d(1));AT 3,18;"Waste `
+";-FN c(d(3));AT 4,18;"Sales `";FN c(d(2)); INVERSE 1;AT 6,18;d$(-4+d*5 TO d*5);
+" `";FN c(d(5));TAB 31;AT 7,18;"Total `";FN c(c);TAB 31: PAUSE 1: PAUSE 0: LET d
+=d+5*(c<0): NEXT d: BORDER 4-2*(c<0): BEEP 1,8*(c>=0): PRINT AT 8,18; FLASH 1;" 
+ GAME OVER  ": PAUSE 0: RUN 
+   8 FOR e=1 TO 3: FOR f=2 TO 5: PRINT AT 5*e+f,0; PAPER 0;b$: NEXT f: FOR f=o(e
+,1,1)=0 TO 0: LET a=INT (o(e,1,3)/100): LET b=(o(e,1,3)-a*100)/100*59: LET t$=(S
+TR$ a)+":"+STR$ INT (b/10)+(STR$ b)(LEN STR$ b): PRINT AT 2+5*e,0;CHR$ (96+e); P
+APER 2;" Order @ ";t$;" ": FOR g=1 TO 3: FOR i=o(e,g,1)=0 TO 0: PRINT PAPER 7;o(
+e,g,2);"x ";m$(o(e,g,1),1);" ": NEXT i: NEXT g: NEXT f: NEXT e: RETURN 
+   9 DATA "<o? Recipes ?p>",3,0,"Bacon",5,"Beef",7,"Bread",3,"Cheese",2,"Chicken
+",7,"Onion",3,"Potatoes",3,"Sausage",6,"Tomato",4,"Cheese Bgr","423",3,"Chk Nugg
+ets","35",3,"Chk Parmo","345",3,"Chips","7",2,"Hamburger","23",2,"Hot dog"
+  10 PRINT PAPER 7;AT 10,17;m$(r,1);" `";c(r): FOR o=1 TO 8: PRINT PAPER 7;AT 11
++o,17;b$( TO 15): LET a$=m$(r,2,o): FOR p=a$<"1" OR a$>"9" TO 0: PRINT PAPER 7;A
+T 11+o,17;i$(VAL a$);TAB 32: NEXT p: NEXT o: RETURN : DATA "683",2,"Margherita",
+"493",4,"Onion rings","36",2,"Pollo Pizza","65493",6,"Royal Burger","14223",5,"U
+ltimate Bgr","69144223",8
