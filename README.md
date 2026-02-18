@@ -5,6 +5,7 @@ This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the p
 #### Barcode Battle
 The BARCODIANS have arrived!  These enigmatic beings, disguised as barcodes on everyday products, possess incredible abilities. Now, it's your turn to harness their power. Enter the code, unleash the warrior, and prepare for battle!
 >ZX Spectrum Position: **3rd**
+
 >Overall Position: **12th**  
 >_Rating: 5.84_
 #### DeLorean Dash
