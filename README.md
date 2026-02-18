@@ -1,5 +1,12 @@
 # Matthew Begg's BASIC 10 Liner Collection
 This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the present day. Find out more about the BASIC 10 Liner contest at [www.basic10liner.com](https://www.basic10liner.com) and find all entries at [bunsen.itch.io](https://bunsen.itch.io).
+## 2026
+### EXTREM-256
+#### CASSETTE 10
+CASSETTE 10 is an impressive technical achievement that condenses ten distinct games into just ten lines of Sinclair ZX Spectrum BASIC code. The project serves as a modern homage to the 1983 budget classic Cassette 50, capturing its "quantity-over-quality" spirit while significantly refining the execution. Players can choose from a diverse selection of mini-games, including Hangman, Simon, and Rock Paper Scissors, all accessible through a dedicated in-game selection menu. Despite the extreme code constraints, the compilation features full color, sound effects, and zero loading times between the various titles.
+>ZX Spectrum Position:   
+>Overall Position:   
+>_Rating:_
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
