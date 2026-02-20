@@ -7,6 +7,11 @@ CASSETTE 10 is an impressive technical achievement that condenses ten distinct g
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
+#### Fast Food Fred
+In this fast-paced catering simulation, you take control of Fred's takeaway in Middlesbrough with the aim of maximizing profits over several busy days. You must efficiently serve a variety of items, including burgers, chips, and parmos, to satisfy a constant stream of hungry customers. Success depends on your ability to manage the frantic rush and accumulate as much cash as possible before the end of the week.
+>ZX Spectrum Position:   
+>Overall Position:   
+>_Rating:_
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
