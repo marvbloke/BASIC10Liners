@@ -3,7 +3,7 @@ This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the p
 ## 2026
 ### EXTREM-256
 #### CASSETTE 10
-CASSETTE 10 is an impressive technical achievement that condenses ten distinct games into just ten lines of Sinclair ZX Spectrum BASIC code. The project serves as a modern homage to the 1983 budget classic Cassette 50, capturing its "quantity-over-quality" spirit while significantly refining the execution. Players can choose from a diverse selection of mini-games, including Hangman, Simon, and Rock Paper Scissors, all accessible through a dedicated in-game selection menu. Despite the extreme code constraints, the compilation features full color, sound effects, and zero loading times between the various titles.
+10 games in 10 lines! CASSETTE 10 is an impressive technical achievement that condenses ten distinct games into just ten lines of Sinclair ZX Spectrum BASIC code. The project serves as a modern homage to the 1983 budget classic Cassette 50, capturing its "quantity-over-quality" spirit. Players can choose from a diverse selection of mini-games, including Hangman, Simon, and Rock Paper Scissors, all accessible through a dedicated in-game selection menu. Despite the extreme code constraints, the compilation features full color, sound effects, and zero loading times between the various titles.
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
