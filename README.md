@@ -12,6 +12,8 @@ In this fast-paced catering simulation, you take control of Fred's takeaway in M
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
+
+More entries still to come...
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
