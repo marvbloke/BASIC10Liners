@@ -1,0 +1,58 @@
+   1 DIM e$(20,10,31): DIM s$(20,10,93): DIM v$(20,10,7): DIM b$(7): DIM x$(64):
+ DIM i(20,10): DEF FN d(x$)=x$>"/" AND x$<":": DEF FN t$(a$)=a$( TO 7+(LEN a$-7)
+*(LEN a$<8)): RESTORE 7: READ w$,z$,d$,s,x,y,z,cy,cx,l$: FOR n=1 TO 6: READ a,b:
+ LET l$=l$+CHR$ 17+CHR$ a+CHR$ 16+CHR$ b+"?": NEXT n: FOR m=1 TO 10: FOR n=1 TO 
+20: BORDER n/4: LET s$(n,m)="0": NEXT n: NEXT m: DATA 1,3,7,15,31,63,127,255
+   2 RESTORE 1: FOR n=0 TO 7: READ a: POKE USR "a"+n,a: POKE USR "b"+n,128: POKE
+ USR "c"+n,1: NEXT n: FOR q=1 TO 1e9: BRIGHT 0: BORDER 7: PAPER 7: INK 0: CLS : 
+FOR p=1 TO NOT s: GO SUB 9: LET s=1: NEXT q: NEXT p: BRIGHT 1: PRINT AT 21,1; IN
+VERSE 1;z$;TAB 25;: PRINT l$;: FOR n=1 TO 20: PRINT AT n,1;TAB 1+(n<=9);n: NEXT 
+n: FOR r=1 TO 1e9: BRIGHT 1: PRINT AT 21,30; INVERSE 1;" ?"(s);: FOR n=1 TO 4: P
+RINT AT 0,-4+7*n;"?  ";CHR$ (64+z+n);"  ?";: NEXT n: BRIGHT 0: FOR p=1 TO s=2: F
+OR n=1 TO 20: FOR m=z+1 TO z+4
+   3 FOR o=1 TO e$(n,m,1)="=" AND s=2: LET a$=STR$ VAL s$(n,m): LET a$=b$+FN t$(
+a$): LET v$(n,m)=a$(LEN a$-6 TO ): NEXT o: NEXT m: NEXT n: NEXT p: FOR n=1 TO 20
+: PRINT AT n,3; INK i(n,z+1);v$(n,z+1); INK i(n,z+2);v$(n,z+2); INK i(n,z+3);v$(
+n,z+3); INK i(n,z+4);v$(n,z+4): NEXT n: FOR l=1 TO 1e9: PRINT AT y,-4+7*x; OVER 
+1; BRIGHT 1; PAPER 6; INK 8;b$: PRINT #1;AT 0,0;CHR$ (64+z+x);y; INK i(y,z+x);"?
+";
+   4 PRINT #1;e$(y,z+x, TO 28);: FOR k=0 TO 1: LET k$=INKEY$: LET k=k$<>"": NEXT
+ k: PRINT AT y,-4+7*x; OVER 1; PAPER 7; INK 8;b$: FOR k=1 TO k$="h": GO SUB 9: N
+EXT q: NEXT k: LET y=y-(y>1 AND k$=CHR$ 11)+(y<20 AND k$=CHR$ 10): FOR o=1 TO z>
+0 AND x=1 AND k$=CHR$ 8: LET z=z-1: NEXT r: NEXT o: FOR o=1 TO z<6 AND x=4 AND k
+$=CHR$ 9: LET z=z+1: NEXT r: NEXT o: LET x=x-(x>1 AND k$=CHR$ 8)+(x<4 AND k$=CHR
+$ 9): FOR k=1 TO k$="n": PRINT #1;AT 0,0;x$;AT 0,1;"New?";
+   5 PAUSE 2: PAUSE 0: FOR o=1 TO INKEY$="y": RUN : NEXT o: NEXT q: NEXT k: FOR 
+k=1 TO k$=CHR$ 13: INPUT AT 0,0;CHR$ (64+z+x);(y); INK i(y,z+x);"?"; LINE w$: NE
+XT k: FOR k=1 TO k$>"/" AND k$<"8": LET i(y,z+x)=VAL k$: PRINT AT y,-4+7*x; INK 
+i(y,z+x); OVER 1;b$: NEXT k: FOR k=1 TO k$=" ": LET s=1+NOT (s-1): NEXT r: NEXT 
+k: FOR k=1 TO k$="c": LET cy=y: LET cx=z+x: NEXT k: FOR k=1 TO k$=CHR$ 12: LET e
+$(y,z+x)="": LET s$(y,z+x)="0"
+   6 LET v$(y,z+x)="": NEXT r: NEXT k: FOR k=1 TO k$="v" AND NOT FN d(e$(cy,cx))
+: LET c$=e$(cy,cx): GO SUB 10: LET w$=f$: NEXT k: FOR k=1 TO k$="s": PRINT #1;AT
+ 0,0;x$;AT 0,1;"Save?";: PAUSE 2: PAUSE 0: FOR o=1 TO INKEY$="y": INPUT LINE a$:
+ SAVE a$ LINE 2: NEXT o: NEXT q: NEXT k: FOR k=1 TO k$="p": PRINT #1;AT 0,0;x$;:
+ COPY : NEXT q: NEXT k: FOR k=1 TO 1<z+x AND k$=CHR$ 15: CLS : LET a=VAL s$(y,z+
+x): FOR n=1 TO 20: LET b=VAL s$(n,z+x): LET i=i(n,1)
+   7 PRINT AT n,0; INK i; v$(n,1); INVERSE 1;x$( TO INT (b/a*18)); INVERSE 0; IN
+K 7*(NOT b);b: NEXT n: PAUSE 0: NEXT q: NEXT k: FOR o=1 TO w$<>"": LET e$(y,z+x)
+=w$: LET s$(y,z+x)="0": LET v$(y,z+x)=w$: LET c=FN d(w$(1)) OR w$(1)="+" OR w$(1
+)="-": FOR p=2 TO LEN w$: LET c=c AND FN d(w$(p)) OR w$(p)=".": NEXT p: FOR p=1 
+TO c=1: LET s$(y,z+x)=w$: LET a$=b$+FN t$(w$): LET v$(y,z+x)=a$(LEN a$-6 TO LEN 
+a$): NEXT p: DATA ""
+   8 FOR p=1 TO w$(1)="=": LET c$=w$: GO SUB 10: LET s$(y,z+x)=f$+w$(a TO LEN w$
+): LET a$=STR$ VAL s$(y,z+x): LET a$=b$+FN t$(a$): LET v$(y,z+x)=a$(LEN a$-6 TO 
+LEN a$): NEXT p: LET w$="": PRINT AT y,-4+7*x; INK i(y,z+x);v$(y,z+x): LET y=y+(
+y<20): NEXT r: NEXT o: NEXT l: STOP : DATA " ZXsheet"," Chart?GRAPHICS  Move?cur
+sor",0,1,1,0,1,1,"",0,2,2,6,6,4,4,5,5,0,0,0 
+   9 BRIGHT 1: PRINT AT 3,7; INVERSE 1;z$;TAB 19;: PRINT l$: RESTORE 9: FOR n=1 
+TO 12: READ a$: PRINT AT 3+n,7;"?";a$;TAB 24;"?": NEXT n: PLOT 56,47: DRAW 143,0
+: PAUSE 2: PAUSE 0: RETURN : DATA d$(16 TO ),"  Edit?ENTER","  Calc?SPACE","Colo
+ur?0-7",d$( TO 15)," Clear?DELETE","  Copy?C"," Paste?V","   New?N","  Save?S","
+ Print?P","  Help?H"
+  10 LET f$="": FOR a=1+(w$<>"") TO -1+LEN c$: LET a$=c$(a): LET b=CODE a$-(32 A
+ND a$>="a" AND a$<="{"): FOR i=1 TO c$(1)="=" AND b>64 AND b<76: LET a=a+1: LET 
+t=a+FN d((c$+" ")(a+1)): LET j=VAL c$(a TO t): LET a=t: FOR d=1 TO j>0 AND j<21 
+AND w$<>"": LET a$=CHR$ 176+"s$("+STR$ j+","+STR$ (b-64)+")": NEXT d: FOR d=1 TO
+ w$="": LET a$=CHR$ (b-cx+z+x)+STR$ (j-cy+y): NEXT d: NEXT i: LET f$=f$+a$: NEXT
+ a: RETURN 
