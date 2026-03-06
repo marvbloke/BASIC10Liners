@@ -11,7 +11,14 @@ This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the p
 In this fast-paced catering simulation, you take control of Fred's takeaway in Middlesbrough with the aim of maximizing profits over several busy days. You must efficiently serve a variety of items, including burgers, chips, and parmos, to satisfy a constant stream of hungry customers. Success depends on your ability to manage the frantic rush and accumulate as much cash as possible before the end of the week.
 >ZX Spectrum Position:   
 >Overall Position:   
->_Rating:_ 
+>_Rating:_
+### PUR-120
+#### ASCII Ascent
+The year is 1978. You are a graduate student at the University’s Department of Computer Science. The legendary R.O.G.U.E. Mainframe — the Research-Oriented Graduate Unix Engine — has locked the building’s lifts and synchronised the security systems to a faulty ASCII table.
+The Mission: You must ascend 120 procedurally-generated levels of the Computer Science Block to reach the rooftop satellite uplink. Only by manually resetting the system at the summit can you stop the mainframe from wiping the University’s research database. Armed only with your wits and health, you must build up your experience to navigate a monolith filled with hardware malfunctions and corrupted data strings.
+>ZX Spectrum Position:   
+>Overall Position:   
+>_Rating:_
 ### SCHAU
 #### ZXsheet
 ZXsheet is a full-featured spreadsheet application for the Sinclair ZX Spectrum, written in only 10 lines of BASIC. It features a 20-row by 10-column workspace that supports formulas with relative addressing, full-color formatting, and a unique graphical bar chart function. Users can navigate the interface using cursor keys, toggle between manual and automatic calculation modes, and save or print their work.
