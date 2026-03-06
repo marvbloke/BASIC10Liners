@@ -1,0 +1,30 @@
+   1 DIM m(99,4): BRIGHT 1: BORDER 0: PAPER 0: READ j,g,h,e,w$: FOR l=1 TO 120: 
+RANDOMIZE l: LET a=RND: LET g=g+2*l: INK FN r(7): CLS : PRINT "L";l: FOR n=1 TO 
+9+l/4: PRINT AT FN r(20),FN r(30);"?";AT FN r(20),FN r(23);
+   2 PRINT w$(FN r(7) TO ): NEXT n: BEEP .1,20: LET y=FN r(19): LET x=FN r(16): 
+LET ey=FN r(19): LET ex=16+FN r(15): LET m=3+l/9: FOR n=1 TO m: LET m(n,1)=FN r(
+l): IF m(n,1)>26 THEN LET m(n,1)=26
+   3 LET m(n,2)=l+m(n,1): LET m(n,3)=FN r(19): LET m(n,4)=FN r(31): NEXT n: FOR 
+q=0 TO 1: FOR n=1 TO m: FOR z=1 TO m(n,2)>0: PRINT AT m(n,3),m(n,4);CHR$ (96+m(n
+,1)): NEXT z: NEXT n: DATA .005
+   4 PRINT AT y,x;"@";AT ey,ex;"^": BEEP j,9: PAUSE 1: PAUSE 0: LET k$=INKEY$: L
+ET py=y: LET y=y+(y<20 AND k$=CHR$ 10)-(y>1 AND k$=CHR$ 11): LET px=x: LET x=x+(
+x<31 AND k$=CHR$ 9)-(x>0 AND k$=CHR$ 8): FOR n=1 TO m
+   5 FOR f=1 TO m(n,2)>0: FOR z=1 TO RND>.3: LET a=m(n,3): LET b=m(n,4): PRINT A
+T a,b;" ": LET r=a+SGN (y-a): FOR p=SCREEN$ (r,b)<>" " TO 0: LET a=r: NEXT p: LE
+T r=b+SGN (x-b): FOR p=SCREEN$ (a,r)<>" " TO 0
+   6 LET b=r: NEXT p: LET m(n,3)=a: LET m(n,4)=b: NEXT z: FOR z=1 TO y=m(n,3) AN
+D x=m(n,4): LET y=py: LET x=px: BEEP .1,0: GO SUB 9: NEXT z: NEXT f: NEXT n: LET
+ h=h+(k$="h" AND g>0 AND h<10+2*e): DATA -2,10
+   7 LET g=g-(k$="h" AND g>0): LET q=(y=ey AND x=ex) OR h<1: FOR z=SCREEN$ (y,x)
+<>"?" TO 0: LET g=g+1: BEEP .1,5: NEXT z: PRINT AT 0,0;"L";l;" ?:";g;" H:";h;"("
+;10+2*e;") XP:";
+   8 PRINT e;TAB 32: FOR z=SCREEN$ (y,x)<>"_" TO 0: LET y=py: LET x=px: NEXT z: 
+PRINT AT py,px;" ": NEXT q: LET d=l: LET l=l+1e9*(h<1): NEXT l: PRINT AT 0,0;"Yo
+u died.";TAB 32: BEEP 1,-8: BEEP 1,-9: PAUSE 1: PAUSE 0: RUN 
+   9 LET d=FN r(3+INT (e/2))*(RND>.1): LET m(n,2)=m(n,2)-d: LET a=m(n,1): PRINT 
+AT 0,0;d;"H>";CHR$ (96+a);TAB 29;m(n,2): PAUSE 99: FOR p=1 TO m(n,2)>0: LET d=FN
+ r(a): LET h=h-d: DATA 0
+  10 PRINT AT 0,9;CHR$ (96+a);">-";d;"H": PAUSE 99: NEXT p: FOR p=1 TO m(n,2)<1:
+ PRINT AT 0,0;CHR$ (96+a);" is dead!";TAB 32: PAUSE 99: LET e=e+1: NEXT p: RETUR
+N : DEF FN r(x)=1+INT (RND*x): DATA "_______"

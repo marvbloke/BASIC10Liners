@@ -1,0 +1,125 @@
+--= ASCII ASCENT =--
+System Requirements: Sinclair ZX Spectrum 16k/48k/+/128k/+2/+3/Next/The Spectrum
+Written by Matthew Begg for the 2026 BASIC 10-Liner Competition (PUR-120 category)
+Licence: CC BY-SA 4.0
+Players: 1
+
+--= INTRODUCTION =--
+The year is 1978. You are a graduate student at the University’s Department of Computer Science. The legendary R.O.G.U.E. Mainframe — the Research-Oriented Graduate Unix Engine — has locked the building’s lifts and synchronised the security systems to a faulty ASCII table.
+The Mission: You must ascend 120 procedurally-generated levels of the Computer Science Block to reach the rooftop satellite uplink. Only by manually resetting the system at the summit can you stop the mainframe from wiping the University’s research database. Armed only with your wits and health, you must build up your experience to navigate a monolith filled with hardware malfunctions and corrupted data strings.
+
+--= LOADING INSTRUCTIONS =--
+- Spectrum 16k/48k/+ - type LOAD "" then ENTER. That's 'J' then Symbol Shift+P twice, then ENTER.
+- Spectrum 128k/+2/+3/Next - choose "Tape Loader" or "Loader" then ENTER.
+- Emulator (e.g. Fuse): load the "ASCII Ascent.tap" file into your emulator then use the instructions above.
+The game will load and automatically start.
+
+--= HOW TO PLAY =--
+Your goal is to reach the 120th floor. Each floor is a gauntlet of ASCII-based security threats.
+- Movement: Use the cursor keys to navigate the floor
+- Ascension: Find the Service Lift (represented by the up arrow symbol ↑) to move up to the next level
+- Resources: Collect ©️ symbols, which represent punchcards
+- Maintenance: If your Health is low, press 'H' to increase your health by 1 using collected punchcards. Your maximum health level is shown in brackets (affected by your XP)
+- Combat: Moving into a monster initiates a combat routine. Your damage dealt is based on your XP, representing the data fragments you've decrypted from the system
+- The Fallen: Defeated threats leave behind "Hardware Scraps" (Icons) on the screen. These are harmless but serve as a reminder of your progress through the block
+
+--= CONTROLS =--
+- Cursor keys (or CAPS SHIFT + 5/6/7/8): Move Left, Down, Up, Right
+- H: Health restore - add 1 to your health, using 1 punchcard
+
+--= THE ALPHABET OF EVIL: HARDWARE LOG =--
+Here's the list of foes you will come across:
+| a | acoustic-coupler | A primitive modem entity that emits high-pitched screeching data
+| b | buffer-overflow | A flickering mass of leaked memory that skitters erratically through the halls
+| c | card-cruncher | A mechanical beast that stalks the keypunch rooms, hungry for paper
+| d | daisy-wheel | A high-velocity spinning printer head; its "impact" is legendary on the upper floors
+| e | eof-error | The "End Of File" ghost; it appears suddenly to terminate your progress
+| f | fan-fold | Sentient stacks of perforated printer paper that entangle the unwary
+| g | glitch-gremlin | Small, fast-moving circuit shorts that frequent the lift shafts
+| h | head-crash | A massive, heavy platter from a hard disk drive that trundles toward you
+| i | ink-leak | A dark, amorphous puddle of ribbon ink that dissolves floor tiles
+| j | jumper-wire | Tangled, electrified copper strands that lash out from open wall panels
+| k | kernel-panic | A terrifying manifestation of system-wide failure; very rare but lethal
+| l | line-noise | Distorted signals that look like static - they are famously difficult to hit
+| m | magnetic-tape | Long, whipping coils of brown tape that have escaped their reels
+| n | null-pointer | An invisible, ethereal void that can only be sensed when it strikes
+| o | operator | A disgruntled, coffee-deprived lab tech who doesn't want you in the server room
+| p | parity-bit | A tiny, persistent security drone that checks for unauthorised data
+| q | queue-shifter | A beast that messes with the order of things, making movement difficult
+| r | ribbon-shredder | A serrated mechanical threat that thrives in the printing departments
+| s | stack-trace | The spectral footprints of previous students who failed their thesis
+| t | teletype | A noisy, clattering mechanical sentinel that guards the middle floors
+| u | unix-daemon | A background process given physical, demonic form by the mainframe
+| v | vdt-glare | A blinding light from an old Video Display Terminal that drains your health
+| w | wire-wrap | A complex, multi-limbed entity made of thousands of tiny connections
+| x | x-off-signal | A creature that attempts to freeze your suit's communication systems
+| y | y-cable | A bifurcated horror that can strike two targets — or one target twice
+| z | zenith-monitor | The ultimate sentinel; an old, heavy CRT monitor that never stops its pursuit
+
+--= A GUIDE TO THE FIRST TEN LEVELS =--
+- Levels 1 and 2 (Red Dark Rooms): These floors were originally the dark rooms for the Art department, hence the red bulbs lighting up everything. Level 1 features three acoustic-couplers (a), with two buffer-overflows (b) appearing on level 2.
+- Level 3 (Magenta Card-Crunchers Cafeteria): The card-crunchers (c) have taken over level 3, grouped as they are at the top right. You have disturbed their quest for paper reams.
+- Level 4 (Green Buffer Room): More buffer-overflows (b) here, but should be an easy path to the lift.
+- Level 5 (Green Punchcard Storeroom): Lower level enemies here, so a good time to clean up on punchcards.
+- Level 6 (Cyan End-Of-File Floor): A couple of eof-errors (e) stalk this floor, trying to end YOUR file.
+- Level 7 (Cyan Computer Lab): The first appearance of a glitch-gremlin (g). Very tricky customer.
+- Level 8 (Yellow Storage Media Room): The hard drives are crumbling here, look out for a head-crash (h).
+- Level 9 (White Faculty Staffroom): You can progress here by avoiding most enemies, and only facing a single glitch-gremlin (g) on the way to the lift.
+- Level 10 (White Computer Museum): You can look at the exhibits, collect the punchcards. Or just run straight to the lift.
+- Levels 11-120: You'll have to keep playing to discover what still lies in wait...
+
+--= APPENDIX A - PROGRAMMER'S NOTES =--
+I've been wanting to write a classic roguelike 10-liner for years, but always struggled to generate the rooms quickly enough, and strike the correct balance of XP, strength of monsters and health. I then had a revelation that the limited size of the Spectrum's screen (32 characters wide by 22 characters tall) would actually suit being a single room per level, rather than having interconnected rooms with corridors as per the original Rogue. Once I made that compromise, the rest of the game fell into place. Using the screen itself as the way to store and monitor where things are was a great hack (thanks to SCREEN$!), as was using the 'RANDOMIZE l' feature to have 120 fixed procedurally-generated levels that start out in the same colour and layout every time you play. This makes the game seem huge - but saves me having to actually store the level layouts or making it totally random. During development as an EXTREM-256 entry, I started to think I could turn this into a PUR-120 entry (my first ever 120 attempt!). That decision meant I had to choose which original Rogue features to keep (the '@' player character, the XP progression, the HP system, the alphabet-based monsters, the turn-based movement, the combat sequence, perma-death) and which features were not as necessary (the 'STR' and 'Armor' stats, the rooms and corridors, longer text in status messages). I even installed the original ASCII-based version of Rogue on my Mac to get in the right headspace for it. I really loved the imaginative use of ASCII to realise such a large world. Using randomised lengths of '_______' as walls was a quick way to build up a level in such limited code. I've managed to play through the game as far as level 56, but it is definitely possible to get to level 120 and complete it. Would love to see evidence of someone managing such a feat!
+Here are some notes on how the game works:
+- I could have made the game 'endless' (with a level loop to '1e9') but decided on having 120 levels (to celebrate fitting it into the PUR-120 category)
+- The colour of each level is pre-determined in a sequence of red, magenta, green, cyan, yellow and blue. Each colour happens for 1 or 2 levels in a row.
+- The number of punchcards and walls on a level uses the formula 9+L/4 (where 'L' is the current level number). So on level 20, you'll get 14 punchcards and 14 walls. The length of each wall is also pre-determined.
+- The player's position on a level is always fixed somewhere on the left half of the screen, and the exit/lift is always fixed somewhere on the right half of the screen. This is to stop the chance of them being in the same location, or too easy by being too close.
+- The number of enemies on a level is determined by the formula 3+L/9 (where 'L' is the current level number). So on level 38, you'll get 7 enemies. 
+- The type/letter of the enemy is determined by the level you're on. Level 1 only has 'a' enemies, Level 2, a/b enemies, Level 3 has a/b/c enemies etc, with a cap after level 26 to have any enemies from a to z.
+- The health of each enemy is determined by the formula L+T (where L is the current level number, and T is the enemy's type). So the starting health of a 'd' monster on level 9 is 13 (4+9). The starting location of each enemy is pre-determined to be anywhere on screen (0,0 to 19,31)
+- Whenever the player presses a key, the system decides whether or not each enemy is going to move (there's a 70% chance of movement). The 'AI' moves the enemy towards the player, avoiding walls. 
+- Battles (subroutine on line 9) have the player striking first, then the enemy. The amount of damage the player inflicts on the enemy is a random amount between 1 and 3+E/2 (where E is the player's current XP). There's also a 'whiff' factor, which means the player has a 10% chance of inflicting zero damage. If the enemy then still has health left, it can inflict damage on the player - a random amount between 1 and T, where T is the enemy type (so a 'kernel-panic' can hit you for anywhere between 1 and 11 hit points). 
+- After the first level, players receive extra punchcards as a reward for completing a level. The total added is two times the current level number (e.g. starting level 3 gives the player 6 extra punchcards)
+- The player's maximum amount of health (shown in brackets) uses the formula 10+2*E, where E is the player's current XP. So a player with XP of 6 will be able to use punchcards to increase their health up to a maximum of 22.
+
+--= APPENDIX B - LINE DESCRIPTIONS =--
+* Line 1 (120 chars): Initialise the array that stores the monsters (m). Set the display brightness on, black border and black background. Read in the initial values for beep duration (j), punchcard total (g), health (h), experience (e) and the wall string (w$). Start the main level loop (l) from 1 to 120. Set the random seed to the current level (this is the key to procedural deterministic levels!). Set a temporary variable (a) to RND - this 'burns' the first randomly generated number. Increase your punchcard total (g) by two times the current level. Set the ink colour for the current level. Clear the screen. Display the current level (e.g. L1). Start a loop (n) to generate the punchcards and walls. The number of punchcards and walls is determined by the current level number (9+L/4). Display each punchcard and...
+* Line 2 (120 chars): ...wall of varying length. End the loop (n). Beep to signify the start of a new level. Generate the position of the player (y,x) and the exit (ey,ex), making sure they're on left and right halves of the screen respectively. Set the number of monsters for this level (m - based on formula 3+L/9). Start a loop (n) for each monster. Set the monster type m(n,1) as anything between 1 and the current level number. If that's bigger than 26, set it to 26 (so in later levels, you can't get monsters with letters past Z - obviously!)
+* Line 3 (120 chars): Set the initial health of the monster m(n,2) by adding the current level number (l) to the monster's type. So a monster on level 5 with a type of 4 will have an initial health of 9. Set the position of the monster m(n,3) and m(m,4). End the loop (n). Set the main game loop (q - acts as a flag for whether you stay on the level, or move to the next one, or die). Start a loop (n) to draw all the monsters. If the monster is still alive (i.e. health above 0), then display it (represented as a lowercase letter from a to z). End the loop (n). DATA statement contains initial value of j (.005)
+* Line 4 (120 chars): Display the player at y,x and the exit at ey,ex. Beep to signify a movement has occurred (it's like a little click). The two pause commands basically wait for the player to press a key. The keypress is stored (k$). Store the current y position as the previous y (py). Update the current y position if the player has pressed up or down (and it won't take the player off the playable area of the screen). Store the current x position as the previous x (px). Update the current x position if the player has pressed left or right (and it won't take the player off the screen). Start a loop (n) for updating monster positions. 
+* Line 5 (119 chars): If the current monster is still alive, then 70% of the time we update its position (this means it can just stay still 30% of the time). Store the current y and x position of the monster (a,b). Remove the monster from the display. Store the y position 1 character further towards the player (r). If that new position is clear, update it (a). Store the x position 1 character further towards the player (r). If that new position is clear...
+* Line 6 (119 chars): ...update it (b). Set the current monster new position m(n,3) and m(n,4). If the new monster position is the same as the player's position, then set the player position back to their previous spot, beep, and start a battle (go to subroutine on line 9). End of loop (n). Increment the health if the player presses the 'h' key, you've got some punchcards, and you haven't reached the maximum health allowed. DATA statement for initial values of g (-2) and h (10). 
+* Line 7 (118 chars): Decrement the punchcard total (g) if the 'h' key is pressed and you have at least one punchcard left. If the player's position has a punchcard in it, increment the punchcard total (g) and beep. Update the status bar on the first line to show level, punchcards, health, maximum health and...
+* Line 8 (119 chars): ...experience points (e.g. "L1 ©️:17 H:8(10) XP:0"). If the player's position has a wall in it, revert to the player's previous position (you can't walk through walls!). Remove the player from the screen. End of main game loop (q). Store the current level number (d). Check if the player has died. End of the level loop (l). Display the phrase 'You died.' and play a sad two beeps. Wait for a keypress, then restart the game from scratch (RUN). 
+* Line 9 (120 chars): Subroutine for a battle. Decide how much damage (d) you will inflict on the monster (a random amount between 1 and three plus half your experience points, with a 10% chance of causing zero damage). Reduce the monster's health accordingly. Store the monster's type (a). Display the amount of damage and the monster's letter, along with their current health level. Wait 2 seconds (but can be skipped if the player holds a key down). Check if the monster is still alive. If so, store the damage (d) the monster will inflict on you (an amount between 1 and the monster's type number - i.e. later monsters can cause more damage). Reduce the player's health accordingly. DATA statement for initial value of experience (0).
+* Line 10 (120 chars): Display the monster's letter and show how much health it is reducing the player by. Wait 2 seconds (but can be skipped if the player holds a key down). If the monster's health is 0, display the monster's letter and the message ' is dead!', wait 2 seconds and increment the player's experience. Return from the subroutine. Define the 'random' function r(x). DATA statement for the wall graphic ("_______").
+NOTE: All line lengths above were calculated programmatically using 'Ten Liner Counter' from the 2025 BASIC 10 Liner contest.
+
+--= APPENDIX C - VARIABLES =--
+- m(99,4): array of up to 99 possible monsters (1:Type, 2:health, 3:Y, 4:X)
+- j: beep duration (set to .005 of a second)
+- l: current Level (1 to 120)
+- g: punchcards (defaults to -2 so that level 1 sets it to 0)
+- h: Health (default 10)
+- e: experience (default 0)
+- w$: wall string (set to "_______")
+- a: temporary variable used to 'burn' the first random value
+- n: loop for generating punchcards and walls
+- m: number of monsters on this level
+- n: loop for each monster when generating level
+- y, x: current player coordinates
+- ey, ex: exit (lift) coordinates
+- q: main loop - aka flag for staying on current level
+- n: loop for drawing the monsters
+- k$: key pressed by player
+- py,px: previous positions of the player
+- n: loop for updating monster positions
+- a,b: store monster position during updates
+- r: y or x monster position 1 character closer to the player
+- d: damage check
+- a: monster's type during battle
+
+
+--= APPENDIX D - FUNCTIONS =--
+- r(x): Generates a random integer between 1 and x for system-wide randomness
