@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a ZXbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'ZX Spectrum';
+            src: url('zx-spectrum.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body { 
+            background-color: #BDBDBD; 
+            color: #000000; 
+            font-family: 'ZX Spectrum', 'Press Start 2P', monospace; 
+            image-rendering: pixelated;
+            line-height: 1.4;
+        }
+
+        .zx-card { 
+            border: 4px solid #000000; 
+            background-color: #BDBDBD;
+            box-shadow: 8px 8px 0px #000000;
+        }
+
+        .pixel-label {
+            font-size: 1rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        input[type="number"] {
+            font-family: inherit;
+            font-size: 1rem;
+            border: 4px solid #000000;
+            padding: 10px;
+            width: 100%;
+            outline: none;
+        }
+
+        /* Color branding for Step 3 - Green */
+        #chunkSize {
+            background-color: #75FB4C;
+            color: #000000;
+        }
+
+        .file-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-choose {
+            border: 4px solid #000000;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: inherit;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: opacity 0.1s;
+        }
+
+        /* Red Loader Button */
+        .btn-loader {
+            background-color: #EA3323;
+            color: #ffffff;
+        }
+
+        /* Yellow Source Button */
+        .btn-source {
+            background-color: #FFFF54;
+            color: #000000;
+        }
+
+        .btn-choose:hover {
+            opacity: 0.8;
+        }
+
+        .fileNameDisplay {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            word-break: break-all;
+        }
+
+        /* Cyan Generate Button */
+        .btn-main {
+            background-color: #75FBFD;
+            color: #000000;
+            padding: 20px;
+            text-align: center;
+            border: 4px solid #000000;
+            cursor: pointer;
+            transition: all 0.1s;
+            font-size: 1.25rem;
+            text-transform: none;
+        }
+
+        .btn-main:hover {
+            opacity: 0.9;
+        }
+
+        .btn-main:active {
+            transform: translate(2px, 2px);
+            box-shadow: none;
+        }
+
+        h1 { 
+            font-size: 2rem; 
+            color: #000000; 
+            text-transform: none;
+            border-bottom: 4px solid #000000;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle { 
+            font-size: 0.85rem; 
+            color: #000000; 
+            margin-bottom: 2rem; 
+            line-height: 1.4; 
+        }
+
+        #status { 
+            font-size: 0.9rem; 
+            margin-top: 1.5rem; 
+            border: 4px solid #000000; 
+            padding: 15px;
+            background-color: #ffffff;
+        }
+
+        .container-padding {
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen container-padding">
+    <div class="max-w-2xl w-full zx-card p-6 md:p-10">
+        <h1>Create a ZXbook</h1>
+        <p class="subtitle">
+            Convert a plain text file (e.g. Project Gutenberg) to a .TAP file with ZXbook.<br>
+            <span class="block mt-2">By Matthew Begg.</span>
+        </p>
+
+        <div class="space-y-8">
+            <div class="flex flex-col">
+                <label class="pixel-label">1. Select ZXbook Loader (.tap)</label>
+                <div class="file-input-wrapper">
+                    <label for="loaderInput" class="btn-choose btn-loader">Choose File</label>
+                    <span id="loaderNameDisplay" class="fileNameDisplay">Select your ZXbook.tap file</span>
+                    <input type="file" id="loaderInput" accept=".tap" class="hidden"/>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label class="pixel-label">2. Select source text (.txt)</label>
+                <div class="file-input-wrapper">
+                    <label for="fileInput" class="btn-choose btn-source">Choose File</label>
+                    <span id="fileNameDisplay" class="fileNameDisplay">No file selected</span>
+                    <input type="file" id="fileInput" accept=".txt" class="hidden"/>
+                </div>
+            </div>
+
+            <div class="flex flex-col">
+                <label class="pixel-label">3. Part size (in bytes)</label>
+                <input type="number" id="chunkSize" value="32256" step="672" min="672" max="40320"/>
+                <div class="text-[12px] mt-2 space-y-1">
+                    <p id="calcDisplay">32256 bytes = 48 pages (3 minutes on tape)</p>
+                </div>
+            </div>
+
+            <div class="btn-main" id="convertBtn">
+                Create a ZXbook
+            </div>
+
+            <div id="status" class="hidden">
+                <p id="statusText" class="mb-2 font-bold text-black"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const convertBtn = document.getElementById('convertBtn');
+        const loaderInput = document.getElementById('loaderInput');
+        const fileInput = document.getElementById('fileInput');
+        const chunkSizeInput = document.getElementById('chunkSize');
+        const loaderNameDisplay = document.getElementById('loaderNameDisplay');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const statusDiv = document.getElementById('status');
+        const statusText = document.getElementById('statusText');
+        const calcDisplay = document.getElementById('calcDisplay');
+
+        const SCREEN_SIZE = 672;
+
+        loaderInput.onchange = () => {
+            if (loaderInput.files.length > 0) {
+                loaderNameDisplay.innerText = loaderInput.files[0].name;
+                loaderNameDisplay.style.color = "#000000";
+            }
+        };
+
+        fileInput.onchange = () => {
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.innerText = fileInput.files[0].name;
+            }
+        };
+
+        function updateStats() {
+            let val = parseInt(chunkSizeInput.value);
+            if (isNaN(val)) return;
+
+            // Constrain to Spectrum limits
+            if (val < SCREEN_SIZE) val = SCREEN_SIZE;
+            if (val > 40320) val = 40320;
+            
+            // Round to nearest screen
+            val = Math.round(val / SCREEN_SIZE) * SCREEN_SIZE;
+            
+            const pages = val / SCREEN_SIZE;
+            
+            // Tape Time Math: 
+            // 1500 baud = 187.5 bytes per second.
+            // Pilot tones + gaps = ~9 seconds total per part.
+            const seconds = (val / 187.5) + 9;
+            const minutes = Math.round(seconds / 60);
+            
+            calcDisplay.innerText = `${val} bytes = ${pages} pages (${minutes} minute${minutes === 1 ? '' : 's'} on tape)`;
+        }
+
+        chunkSizeInput.onchange = () => {
+            updateStats();
+            chunkSizeInput.value = parseInt(calcDisplay.innerText); // Pull the rounded value back to input
+        };
+
+        chunkSizeInput.oninput = updateStats;
+
+        function showStatus(msg) {
+            statusDiv.classList.remove('hidden');
+            statusText.innerText = msg;
+        }
+
+        function getArrayVarCode(nameInput) {
+            const char = nameInput.toLowerCase().charAt(0);
+            const letterPos = char.charCodeAt(0) - 96; 
+            return 128 + 32 + letterPos; 
+        }
+
+        function createHeader(filename, payloadLength, varCode) {
+            const header = new Uint8Array(19);
+            header[0] = 0x00; 
+            header[1] = 0x02; 
+            const name = filename.substring(0, 10).padEnd(10, ' ');
+            for(let i = 0; i < 10; i++) header[i+2] = name.charCodeAt(i);
+            
+            header[12] = payloadLength & 0xFF;
+            header[13] = (payloadLength >> 8) & 0xFF;
+            header[14] = varCode;
+            header[15] = 0x00;
+            header[16] = 0x00;
+            header[17] = 0x00;
+            
+            let checksum = 0;
+            for(let i = 0; i < 18; i++) checksum ^= header[i];
+            header[18] = checksum;
+            return header;
+        }
+
+        function createArrayDataBlock(rawTextData) {
+            const dataLength = rawTextData.length;
+            const block = new Uint8Array(dataLength + 3 + 2); 
+            
+            block[0] = 0xFF; 
+            block[1] = 0x01; 
+            block[2] = dataLength & 0xFF; 
+            block[3] = (dataLength >> 8) & 0xFF; 
+            
+            block.set(rawTextData, 4);
+            
+            let checksum = 0;
+            for(let i = 0; i < block.length - 1; i++) checksum ^= block[i];
+            block[block.length - 1] = checksum;
+            return block;
+        }
+
+        function wrapForTap(block) {
+            const wrapped = new Uint8Array(block.length + 2);
+            wrapped[0] = block.length & 0xFF;
+            wrapped[1] = (block.length >> 8) & 0xFF;
+            wrapped.set(block, 2);
+            return wrapped;
+        }
+
+        function sanitizeAndPad(input) {
+            let text = input.replace(/\r\n/g, "\n").replace(/\r/g, "\n")
+                .replace(/[\u2018\u2019]/g, "'")
+                .replace(/[\u201C\u201D]/g, '"');
+
+            text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            text = text.replace(/[^\x00-\x7F]/g, " ");
+
+            let paragraphs = text.split(/\n\s*\n/);
+            let finalBuffer = "";
+
+            paragraphs.forEach((para, idx) => {
+                let paraText = para.replace(/\n/g, " ").trim();
+                if (paraText.length === 0) return;
+
+                let words = paraText.split(/\s+/);
+                let currentLine = "";
+
+                words.forEach(word => {
+                    while (word.length > 32) {
+                        if (currentLine) {
+                            finalBuffer += currentLine.padEnd(32, " ");
+                            currentLine = "";
+                        }
+                        finalBuffer += word.substring(0, 32);
+                        word = word.substring(32);
+                    }
+
+                    if ((currentLine + (currentLine ? " " : "") + word).length <= 32) {
+                        currentLine += (currentLine ? " " : "") + word;
+                    } else {
+                        finalBuffer += currentLine.padEnd(32, " ");
+                        currentLine = word;
+                    }
+                });
+                
+                if (currentLine) finalBuffer += currentLine.padEnd(32, " ");
+                if (idx < paragraphs.length - 1) finalBuffer += "".padEnd(32, " ");
+            });
+
+            return finalBuffer.split('').map(c => {
+                const code = c.charCodeAt(0);
+                return (code >= 32 && code <= 126) ? c : ' ';
+            }).join('');
+        }
+
+        convertBtn.onclick = async () => {
+            if (!loaderInput.files.length) {
+                showStatus("Error: Select ZXbook.tap");
+                return;
+            }
+            if (!fileInput.files.length) {
+                showStatus("Error: Select text file");
+                return;
+            }
+
+            const loaderBuffer = await loaderInput.files[0].arrayBuffer();
+            const text = await fileInput.files[0].text();
+            
+            let chunkSize = parseInt(chunkSizeInput.value);
+            chunkSize = Math.max(SCREEN_SIZE, Math.round(chunkSize / SCREEN_SIZE) * SCREEN_SIZE);
+            if (chunkSize > 40320) chunkSize = 40320;
+            chunkSizeInput.value = chunkSize;
+
+            const varCode = getArrayVarCode("t");
+            const cleanText = sanitizeAndPad(text);
+            const chunks = [];
+            for (let i = 0; i < cleanText.length; i += chunkSize) {
+                chunks.push(cleanText.substring(i, i + chunkSize));
+            }
+
+            const tapFileParts = [];
+            tapFileParts.push(new Uint8Array(loaderBuffer));
+
+            chunks.forEach((chunk, index) => {
+                const paddedChunk = chunk.padEnd(chunkSize, ' ');
+                const rawData = new Uint8Array(chunkSize);
+                for(let i=0; i<chunkSize; i++) rawData[i] = paddedChunk.charCodeAt(i);
+                
+                const dataBlock = createArrayDataBlock(rawData);
+                const header = createHeader(`p${index+1}`, dataBlock.length - 2, varCode);
+                
+                tapFileParts.push(wrapForTap(header));
+                tapFileParts.push(wrapForTap(dataBlock));
+            });
+
+            const totalSize = tapFileParts.reduce((acc, b) => acc + b.length, 0);
+            const finalTap = new Uint8Array(totalSize);
+            let offset = 0;
+            tapFileParts.forEach(block => {
+                finalTap.set(block, offset);
+                offset += block.length;
+            });
+
+            const blob = new Blob([finalTap], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileInput.files[0].name.replace(".txt", ".tap");
+            a.click();
+            
+            showStatus(`ZXbook created in ${chunks.length} ${chunks.length === 1 ? 'part' : 'parts'}.`);
+        };
+        
+        // Initial run
+        updateStats();
+    </script>
+</body>
+</html>

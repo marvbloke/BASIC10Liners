@@ -1,0 +1,30 @@
+   1 RESTORE 10: BRIGHT 0: BORDER 7: PAPER 7: INK 0: CLS : READ s,bp,bs,l$: FOR 
+n=0 TO 7: READ a: POKE USR "a"+n,a: NEXT n: FOR n=1 TO 6: READ a,b: LET l$=l$+CH
+R$ 17+CHR$ a+CHR$ 16+CHR$ b+"?": NEXT n
+   2 CLS : GO SUB 8: GO SUB 10: LET p=1: DEF FN b()=k$="o" OR k$="e" OR k$=CHR$ 
+12 OR k$=CHR$ 8 OR k$=CHR$ 11: DEF FN f()=k$="p" OR k$="d" OR k$=CHR$ 13 OR k$=C
+HR$ 9 OR k$=CHR$ 10 
+   3 PRINT AT 0,0;t$((1+(p-1)*672) TO (672+(p-1)*672)); BRIGHT 1; INVERSE 1;AT 2
+1,0;"Part ";s;" Page ";p;"/";t;TAB 26; INVERSE 0;l$;: FOR n=1 TO bs=s AND bp=p: 
+PRINT AT 0,29; OVER 1; PAPER 2; INK 9;" ";AT 1,29;" ": NEXT n: PAUSE 0: LET k$=I
+NKEY$
+   4 FOR n=1 TO (p=1)*(s>1)*FN b(): LET s=s-1: GO SUB 10: LET p=t: GO TO 3: NEXT
+ n: FOR n=1 TO (p=t)*FN f(): LET s=s+1: GO SUB 10: LET p=1: GO TO 3: NEXT n: LET
+ p=p-FN b()*(p>1)+FN f()*(p<t)
+   5 FOR n=1 TO k$="g": FOR m=0 TO 1: INPUT "Page ";a: LET m=a>0 AND a<=t: NEXT 
+m: LET p=a: NEXT n: FOR n=1 TO k$="j": FOR m=0 TO 1: INPUT "Part ";a: LET m=a>0:
+ NEXT m: FOR m=1 TO a<>s: LET s=a: GO SUB 10: LET p=1: NEXT m: NEXT n: FOR n=1 T
+O k$="h": GO SUB 8: NEXT n
+   6 FOR n=1 TO k$="b" AND bp=0 AND bs=0: LET bp=p: LET bs=s: GO TO 3: NEXT n: F
+OR n=1 TO k$="b" AND (bp<>p OR bs<>s): LET p=bp: FOR m=1 TO bs<>s: LET s=bs: GO 
+SUB 10: NEXT m: GO TO 3: NEXT n: FOR n=1 TO k$="b" AND bp=p AND bs=s: LET bp=0: 
+LET bs=0: NEXT n
+   7 GO TO 3
+   8 BRIGHT 1: PRINT AT 7,7; INVERSE 1;"ZXbook      ";: PRINT l$: RESTORE 8: FOR
+ n=1 TO 7: READ a$: PRINT AT 7+n,7;" ";a$;TAB 24;" ": NEXT n: PLOT 56,111: DRAW 
+0,-56: DRAW 143,0: DRAW 0,56: PAUSE 2: PAUSE 0: BRIGHT 0: RETURN : DATA "o?prev 
+page","p?next page","b?bookmark","g?goto to page","j?jump to part","h?help"," ? 
+         v1.2"
+  10 CLS : PRINT "Loading part ";s;"...": LOAD "p"+(STR$ s) DATA t$(): LET t=INT
+ ((LEN t$)/672): RETURN : DATA 1,0,0,"",1,3,7,15,31,63,127,255,0,2,2,6,6,4,4,5,5
+,0,0,0

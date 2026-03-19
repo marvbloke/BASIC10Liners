@@ -1,0 +1,79 @@
+--= ZXbook =--
+System Requirements: Sinclair ZX Spectrum 48k/+/128k/+2/+3/Next/The Spectrum
+Written by Matthew Begg for the 2026 BASIC 10-Liner Competition (PLUS category)
+Licence: CC BY-SA 4.0
+
+--= Introduction =--
+ZXbook is a fully-featured eBook reader for the Sinclair ZX Spectrum. It allows you to read through books/articles/documents of multiple parts, navigating with ease. It is styled after the Spectrum+ 128k operating system and includes bookmarking and jumping to specifically numbered parts and pages. Five complete ZXbooks are provided for the contest and all use the same ZXbook program (all texts are in the public domain and are therefore copyright-free):
+- 1. 'Alice's Adventures in Wonderland' by Lewis Carroll (6 parts)
+- 2. 'The Wonderful Wizard of Oz' by L. Frank Baum (9 parts)
+- 3. 'The Great Gatsby' by F. Scott Fitzgerald (12 parts)
+- 4. 'A Study in Scarlet' by Arthur Conan Doyle (9 parts)
+- 5. 'A Christmas Carol' by Charles Dickens (7 parts)
+A tool for creating your own ZXbooks is also provided (see 'Create your own ZXbooks' below).
+Interesting fact: each of these books would easily fit on one side of a C90 cassette tape, with each part taking just over 3 minutes to load on real hardware.
+
+--= Loading Instructions =--
+- Spectrum 48k/+ - type LOAD "" then ENTER. That's 'J' then Symbol Shift+P twice, then ENTER.
+- Spectrum 128k/+2/+3/Next - choose "Tape Loader" or "Loader" then ENTER.
+- Emulator (e.g. Fuse): load one of the five numbered ZXbook files, e.g. "ZXbook 1 - Alice's Adventures in Wonderland.tap" into your emulator then use the instructions above. Emulators generally start and stop the tape automatically as you move from part to part in the book.
+The book will load and automatically start.
+
+--= How to use =--
+When a ZXbook is first loaded, it displays the help screen to remind you of the controls. Press any key to continue. It then loads the first part of the book from tape. In the examples provided, each part is made up of 48 pages of text. Press 'p' to turn the page. Press 'o' to go back a page. Press 'b' to bookmark the current page (indicated with a small red mark at the top right of the page). If you're currently on a bookmarked page, pressing 'b' removes the bookmark. If you're on a different page, pressing 'b' takes you straight to the part and page you've previously bookmarked. Press 'g' to go to a specific numbered page in the current part (enter a number between 1 and 48 and press ENTER). Press 'j' to jump to a specific part of the book (e.g. if reading 'The Great Gatsby', enter a number between 1 and 12 and press ENTER). Press 'h' to bring up the help screen (and press any key to dismiss it). Once you reach the last page of the current part, ZXbook will automatically load the next part. If you try and go back to a previous part, you will need to rewind the tape.
+
+--= Controls =--
+- O: previous page
+- P: next page
+- B: bookmark current page / remove bookmark from current page / jump to bookmarked page from elsewhere
+- G: go to page number...
+- J: go to part number...
+- H: help screen
+Hidden controls: there are actually four alternative ways to move between pages: E and D, left arrow and right arrow, up arrow and down arrow, and ENTER and DELETE.
+
+--= Create your own ZXbooks (optional - not part of the contest entry) =--
+Once you've consumed all five of the provided books, you'll want more tomes to satisfy your reading curiosity. That's where the provided 'ZXbook Creator.html' comes in. This is a 'vibe-coded' utility (not part of the contest entry) that takes a plain text file, word wraps it for the 32-column display, converts any accented or non-ASCII characters and splits the text into parts to fit in the Spectrum's memory. It then produces a ZXbook tape file (.tap) comprising the ZXbook program plus all the parts of the book as strings (t$).
+Here are the six steps to creating your own ZXbooks:
+1. Get hold of your book in 'plain text' format (.txt), for example from gutenberg.org
+2. Open 'ZXbook Creator.html' in your web browser of choice. 
+3. For step one, choose the 'ZXbook (loader only).tap' file
+4. For step two, choose your book in .txt format
+5. For step three, you can optionally alter the size of the parts - it defaults to 32256 bytes which is the largest recommended size. That means fewer parts to make up a book, but on a real Spectrum means longer loading times per part (32256 bytes takes around 3 minutes to load!). Feel free to experiment with smaller part sizes (or just stick to the default 32256)
+6. Press 'Create a ZXbook' then download the resulting .tap file for use in your emulator (or transferring to a real Spectrum)
+
+--= APPENDIX A - Programmer's Notes =--
+I previously tried creating an eBook reader BASIC 10-liner a couple of years ago, but was obviously very limited by the file size. I actually had a working 'EXTREM-256' entry that displayed the first three and a half pages of Alice in Wonderland! Clearly useless.
+So imagine my delight when looking through the rules for the 2026 BASIC 10 Liner contest, when I spotted a new category called 'PLUS'. I was intrigued, as it appeared the time was right for my Spectrum eBook reader to see the light of day! The PLUS category states 'It is still permitted to load background graphics, title images, and accompanying music from external storage media.' Granted - that doesn't specifically mention text as media, but I think it is in the spirit of what was intended, i.e. the program itself is 10 lines (or less), 256 characters (or less) per line, with the media loaded/stored separately.
+You might recognise the look and feel of ZXbook from my recent 10 liner 'ZXsheet' - aiming to continue the look of the Spectrum+ 128k and perhaps build up a full matching productivity suite!
+
+--= APPENDIX B - Line Descriptions =--
+* Line 1 (94 characters): Set the data read position to line 10. Set the screen brightness off, set the border to white, background to white and text to black. Clear the screen. Read in the initial values for the current part (s), the bookmarked page (bp), the bookmarked part (bs) and the blank logo string (l$). Start a loop (n) and read in the 8 numbers needed to create a user-defined graphic for the logo. End the loop. Start a loop (n) to read in pairs of numbers (a,b), then build up the Sinclair-style logo (l$) with the needed paper and ink colours. End the loop.
+* Line 2 (94 characters): Clear the screen. Go to the subroutine for displaying the help box (line 8). Go to the subroutine for loading in the first part of the book (line 10). Set the current page number (p) to 1. Define the function for backwards key presses (b()), which checks if 'o', 'e', DELETE, left arrow or up arrow is pressed. Define the function for forwards key presses (f()), which checks if 'p', 'd', ENTER, right arrow or down arrow is pressed.
+* Line 3 (148 characters): Display the current page of text (made up of 672 characters from t$, then display the status bar at the bottom comprigin the current part number (s), page number (p), total pages (t) and the logo (l$). If the current part (s) and page (s) equal the bookmarked part (bs) and page (bp), then display a red rectangle over the text at the top right. Wait for a key press (PAUSE 0). Store the pressed key in k$.
+* Line 4 (110 characters): If you're on page 1, and on a part after part 1, and a backwards key is pressed (function b()), then decrement the current part (s), load the previous part (subroutine on line 10), set the page number (p) to the last page (t), and go back to line 3. If you're on the last page of the current part and a forwards key is pressed (function f()), then increment the part number (s), load the next part (subroutine on line 10), set the page number (p) to 1, and go back to line 3. Update the page number (p) if backwards or forwards keys are pressed (within the current part).
+* Line 5 (140 characters): If 'g' is pressed, prompt the user for the page to go to. Checks that the page number entered (a) is greater than 0 and less than or equal to the total number of pages in the current part. If so, sets the page number (p=a). If 'j' is pressed, prompt the user for the part to jump to. Checks that the part number entered (a) is greater than 0. If the part number entered is different to the current part number, then update it (s) and load the new part (subroutine on line 10). Set the page number to 1. If 'h' is pressed, display the help box (subroutine on line 8). 
+* Line 6 (137 characters): If 'b' is pressed and a bookmark isn't currently set, then set it to the current part and page, and go back to line 3. If 'b' is pressed and you're not currently on the bookmarked part/page, then update the page number. If it's in a different part, update the part and load it (subroutine on line 10), then go back to line 3. If 'b' is pressed and you're currently on the bookmarked part and page, then reset the bookmark to 0 (i.e. remove the bookmark). 
+* Line 7 (4 characters): Jump back to line 3.
+* Line 8 (216 characters): Set screen brightness on. Display the title bar of the help box 'ZXbook' then the logo (l$). Set the data read position to line 8. Start a loop (n) to read in the 7 lines of help text. Plot a point at the top left of the help box, then draw three lines to make the outline of the box. Two pause statements are used to wait for a key press. Set screen brightness off. Return from the subroutine. DATA statement containing 7 strings of help text.
+* Line 10 (119 characters): Clear the screen. Display 'Loading part ' then the part number (s). Load the part from tape and read it into the array t$(). Calculate the total number of pages (t) based on the length of the t$ string divided by 672. Return from the subroutine. DATA statement containing initial values of s, bp, bs, l$ then 8 numbers for the UDG, then 6 pairs of paper/ink values for the logo.
+NOTE: All line lengths above were calculated programmatically using 'Ten Liner Counter' from the 2025 BASIC 10 Liner contest.
+
+--= APPENDIX C - Variables =--
+- s: current part number (called 's' meaning section, to differentiate from 'p' for page) - default 1
+- bp: bookmarked page number - default 0 (i.e. no bookmark yet)
+- bs: bookmarked part number - default 0 (i.e. no bookmark yet)
+- l$: Sinclair-style logo - defaults to blank string before building the logo
+- n: loop for creating UDG
+- a: values for the UDG
+- n: loop for building the logo
+- a,b: pairs of values for paper/ink for the logo
+- n: loop for reading in help text
+- t$: text of the current part
+- t: total number of pages in the current part
+- n: used for various IF statements (in the style of FOR loops - 1 TO (condition)
+- k$: key pressed by user
+- a: page number entered 
+
+--= APPENDIX D - Functions =--
+b() - true if key pressed is to go to previous page
+f() - true if key pressed is to go to the next page
