@@ -12,6 +12,12 @@ In this fast-paced catering simulation, you take control of Fred's takeaway in M
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
+### PLUS
+#### ZXbook
+ZXbook is a fully-featured eBook reader for the Sinclair ZX Spectrum. It allows you to read through books/articles/documents of multiple parts, navigating with ease. It is styled after the Spectrum+ 128k operating system and includes bookmarking and jumping to specifically numbered parts and pages. Five complete ZXbooks are provided for the contest and all use the same ZXbook program (all texts are in the public domain and are therefore copyright-free)
+>ZX Spectrum Position:   
+>Overall Position:   
+>_Rating:_
 ### PUR-120
 #### ASCII Ascent
 The year is 1978. You are a graduate student at the University’s Department of Computer Science. The legendary R.O.G.U.E. Mainframe — the Research-Oriented Graduate Unix Engine — has locked the building’s lifts and synchronised the security systems to a faulty ASCII table.
