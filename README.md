@@ -12,7 +12,12 @@ In this fast-paced catering simulation, you take control of Fred's takeaway in M
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
-### PUR-120
+### PUR-80
+#### ZX Letterpress
+Long before word games were defined by daily streaks and yellow squares, Letterpress arrived on the iPhone in 2012 and redefined the genre. Created by Loren Brichter, it transformed the simple act of finding words into a cutthroat tactical battle for territorial control. Unlike its predecessors, the game wasn't just about vocabulary; it was about the "protection" mechanic — surrounding your tiles to lock them down and keep your opponent from stealing your progress. Making it to the prestigious BASIC 10 Liner contest in 2026 proves that great game design is timeless, trading high-resolution Retina displays for the classic 8-bit look.
+>ZX Spectrum Position:   
+>Overall Position:   
+>_Rating:_### PUR-120
 #### ASCII Ascent
 The year is 1978. You are a graduate student at the University’s Department of Computer Science. The legendary R.O.G.U.E. Mainframe — the Research-Oriented Graduate Unix Engine — has locked the building’s lifts and synchronised the security systems to a faulty ASCII table.
 The Mission: You must ascend 120 procedurally-generated levels of the Computer Science Block to reach the rooftop satellite uplink. Only by manually resetting the system at the summit can you stop the mainframe from wiping the University’s research database. Armed only with your wits and health, you must build up your experience to navigate a monolith filled with hardware malfunctions and corrupted data strings.

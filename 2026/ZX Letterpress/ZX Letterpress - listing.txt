@@ -1,0 +1,21 @@
+   1 DIM g$(7,7): DIM o(7,7): DIM b(7,7): BRIGHT 0: BORDER 7: PAPER 7: INK 9: CL
+S : DATA "AAAEEEEIIIOOUBCDFGHKLLMNNPRRSSSTTVWY"
+   2 DEF FN c(x)=(o(a-1,b)=x OR a=2) AND (o(a,b-1)=x OR b=2) AND (o(a+1,b)=x OR 
+a=6) AND (o(a,b+1)=x OR b=6): READ l$
+   3 READ y,x: FOR a=2 TO 6: FOR b=2 TO 6: LET g$(a,b)=l$(1+INT (RND*36)): NEXT 
+b: NEXT a: FOR l=1 TO 8e9: FOR p=1 TO 2: LET t$="": GO SUB 8: DATA 2,2
+   4 FOR q=1 TO 99: PRINT AT 0,9;t$;TAB 29;AT 6+y,11+x; OVER 1; PAPER p; BRIGHT 
+8; FLASH 1;" ": PAUSE 9: PAUSE 0: LET k$=INKEY$: PRINT AT 6+y,11+x;
+   5 PRINT OVER 1; BRIGHT 8; PAPER 7-o(y,x);" ": LET y=y-((y>2) AND k$="e")+((y<
+6) AND k$="d"): LET x=x-((x>2) AND k$="o")
+   6 LET x=x+((x<6) AND k$="p"): FOR a=SCREEN$ (6+y,11+x)=" " OR k$<>"m" TO 0: L
+ET t$=t$+g$(y,x): PRINT AT 6+y,11+x;" "
+   7 NEXT q: NEXT a: FOR z=1 TO k$=CHR$ 12: LET t$="": GO SUB 8: NEXT z: LET q=q
++99*(k$=CHR$ 13 AND 2<LEN t$): NEXT q: GO SUB 10: NEXT p: NEXT l: DEF FN a()=o(a
+,b)
+   8 DIM s(7): FOR a=2 TO 6: FOR b=2 TO 6: LET b(a,b)=FN a()>0 AND FN c(FN a()):
+ PRINT AT 6+a,11+b; BRIGHT b(a,b); PAPER 7-FN a();g$(a,b)
+   9 LET s(7-FN a())=s(7-FN a())+1: NEXT b: NEXT a: PRINT AT 0,1; INK 1;s(1);TAB
+ 29; INK 2;s(2): IF s(1)+s(2)=25 THEN BEEP 2,9: PAUSE 0: RUN 
+  10 FOR a=2 TO 6: FOR b=2 TO 6: LET o(a,b)=FN a()+(7-p-FN a())*(PEEK (19403+32*
+a+b)=0)*(b(a,b)=0): NEXT b: NEXT a: RETURN

@@ -1,0 +1,72 @@
+--= ZX LETTERPRESS =--
+System Requirements: Sinclair ZX Spectrum 16k/48k/+/128k/+2/+3/Next/The Spectrum
+Written by Matthew Begg for the 2026 BASIC 10-Liner Competition (PUR-80 category)
+Licence: CC BY-SA 4.0
+
+Players: 2 (or 1 vs AI - see below)
+
+--= INTRODUCTION =--
+Long before word games were defined by daily streaks and yellow squares, Letterpress arrived on the iPhone in 2012 and redefined the genre. Created by Loren Brichter, it transformed the simple act of finding words into a cutthroat tactical battle for territorial control. Unlike its predecessors, the game wasn't just about vocabulary; it was about the "protection" mechanic — surrounding your tiles to lock them down and keep your opponent from stealing your progress. 
+Making it to the prestigious BASIC 10 Liner contest in 2026 proves that great game design is timeless, trading high-resolution Retina displays for the classic 8-bit look.
+
+--= LOADING INSTRUCTIONS =--
+- Spectrum 48k/+ - type LOAD "" then ENTER. That's 'J' then Symbol Shift+P twice, then ENTER.
+- Spectrum 128k/+2/+3/Next - choose "Tape Loader" or "Loader" then ENTER.
+- Emulator (e.g. Fuse): load the "ZX Letterpress.tap" file into your emulator then use the instructions above.
+The game will load and automatically start.
+
+--= HOW TO PLAY =--
+ZX Letterpress is a competitive game of territory and vocabulary. You are presented with a 5x5 grid of 25 random letters. Players take turns spelling words to claim territory on the board.
+The game ends when every single tile on the board has been claimed by a player. The player who owns the most tiles when the board is completely filled is the winner.
+Taking a Turn:
+Player 1 (Blue) and Player 2 (Red) take alternating turns.
+Use the following keys to navigate your cursor around the grid:
+- 'E' - Up
+- 'D' - Down
+- 'O' - Left
+- 'P' - Right
+- 'M' - Select a letter
+As you select letters, they are added to your current word, which is displayed at the top of the screen. Letters do not need to be adjacent; you can pick them from anywhere on the board! 
+- Press 'DELETE' (Caps Shift + 0) to clear your current word and start your turn again.
+- Press 'ENTER' to submit your word.
+If the word is accepted (in a real game, players must agree it is a valid English word!), all the letters you used will flip to your colour. If your opponent previously owned any of those letters, you steal them!
+The Rule of Protection:
+If a tile you own is surrounded on all exposed sides by other tiles you own (or by the edge of the board), it becomes "Protected". 
+Protected tiles are shown in a BRIGHTER colour on the Spectrum screen. Your opponent CANNOT steal a protected tile, even if they use that letter in their word! They must first steal the surrounding darker tiles to break the "wall" of protection before they can claim the inner letters. 
+Other rules:
+- ZX Letterpress doesn't include a dictionary (for obvious reasons!) so make sure all words played are valid before pressing 'ENTER'.
+- The program doesn't keep track of words previously played, so make sure you don't repeat a word within a game.
+- Original Letterpress rules apply about prefixes - if someone plays 'HEARTS', you can't play 'HEART'. But longer derivatives are allowed, so if someone plays 'LIGHT' you can play 'LIGHTS' or 'LIGHTING'.
+
+--= SINGLE PLAYER MODE (THE AI OPPONENT) =--
+While ZX Letterpress is natively a 2-player hot-seat game, it makes for a brilliant single-player puzzle if you have an AI assistant handy (such as Google Gemini or ChatGPT).
+Play your Blue turn normally. When it is Red's turn, simply take a photograph of your Spectrum screen (or a screenshot if using an emulator) that clearly shows the current state of the grid. Upload this image to the AI, using the specific prompt: 'Red's move in Letterpress'. The AI will analyse the letters available, taking note of which tiles are currently protected, and suggest the best legal word to play. It's a fantastic way to test your vocabulary and strategy against a supercomputer!
+
+--= APPENDIX A - LINE DESCRIPTIONS =--
+* Line 1 (80 chars): Create arrays for the letter grid, ownership status, and protection states. Set default display attributes (colours and brightness), clear the screen, and store the 36-character weighted alphabet string as DATA.
+* Line 2 (79 chars): Define function c(x) to evaluate if a tile is "protected" by checking the ownership of adjacent tiles and board edges. Read the alphabet string into l$.
+* Line 3 (80 chars): Read starting cursor coordinates. Populate the 5x5 grid with random letters from the alphabet string. Begin the main game loop, player turn loop, and word-building loop. Call subroutine 8 to draw the board. Store starting coordinates (2,2) in a DATA statement.
+* Line 4 (72 chars): Print the current word in progress at the top of the screen. Display a flashing cursor over the currently selected tile. Wait for player input and store the pressed key in k$. Blank the current tile when a key is pressed.
+* Line 5 (77 chars): Update the y (vertical) coordinate of the cursor based on 'e' (up) and 'd' (down) keypresses, ensuring it stays within the board bounds. Begin updating the x (horizontal) coordinate for the 'o' (left) keypress.
+* Line 6 (79 chars): Finish updating the x coordinate for the 'p' (right) keypress. Check if the 'm' key is pressed and the current tile is available; if so, append the letter to the current word t$ and visually blank the tile to show it has been used.
+* Line 7 (80 chars): Process word submission and deletion. If 'DELETE' is pressed, clear the word and redraw the board. If 'ENTER' is pressed and the word is at least 3 letters long, end the player's turn. Call subroutine 10 to update tile ownership. Close the main game loops. Define macro function a() to return o(a,b) to save characters.
+* Line 8 (80 chars): (Subroutine 8) Reset the score array. Loop through the 5x5 grid. Calculate and assign the protection status of each tile. Draw the tile on the screen with the appropriate colour, brightness (if protected), and letter.
+* Line 9 (80 chars): Increment the score for the current tile's owner. Close the grid drawing loop. Print the total scores for Player 1 (Blue) and Player 2 (Red). Check the win state: if the combined score is 25, set border green and wait for a keypress while admiring the board, then RUN to restart.
+* Line 10 (79 chars): (Subroutine 10) Loop through the 5x5 grid. Update the ownership status of the tile to the current player IF it was used in the word (checked via PEEK) AND it is not protected. Return to the main loop.
+NOTE: All line lengths above were calculated programmatically using 'Ten Liner Counter' from the 2025 BASIC 10 Liner contest.
+
+--= APPENDIX B - VARIABLES =--
+- g$(7,7): The grid of generated letters
+- o(7,7): Ownership array (0=Neutral, 1=Blue, 2=Red)
+- b(7,7): Brightness/Protection array (1=Protected, 0=Unprotected)
+- s(7): Score tracking array (s(1)=Blue, s(2)=Red)
+- l$: The 36-character weighted alphabet string ("AAAEEEEIIIOOUBCDFGHKLLMNNPRRSSSTTVWY")
+- y, x: Current Y and X coordinates of the cursor
+- p: Current player turn (1 or 2)
+- t$: The current word string being built by the player
+- k$: The key currently being pressed
+- q, a, b, l, z: loop counters
+
+--= APPENDIX C - FUNCTIONS =--
+- FN c(x): Calculates the "Protection" logic. It checks if the current tile's neighbours (Up, Down, Left, Right) share the same ownership colour 'x', OR if the tile is safely resting against the edge of the 5x5 board (a=2, b=2, a=6, or b=6). 
+- FN a(): A text-replacement macro function that returns o(a,b) to save characters on lines 8, 9 and 10.
