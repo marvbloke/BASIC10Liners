@@ -37,8 +37,6 @@ ZXsheet is a full-featured spreadsheet application for the Sinclair ZX Spectrum,
 >ZX Spectrum Position:   
 >Overall Position:   
 >_Rating:_
-
-More entries still to come...
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
