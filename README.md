@@ -4,39 +4,39 @@ This is the full collection of Matthew Begg's BASIC 10 Liners from 2022 to the p
 ### EXTREM-256
 #### CASSETTE 10
 10 games in 10 lines! CASSETTE 10 is an impressive technical achievement that condenses ten distinct games into just ten lines of Sinclair ZX Spectrum BASIC code. The project serves as a modern homage to the 1983 budget classic Cassette 50, capturing its "quantity-over-quality" spirit. Players can choose from a diverse selection of mini-games, including Hangman, Simon, and Rock Paper Scissors, all accessible through a dedicated in-game selection menu. Despite the extreme code constraints, the compilation features full color, sound effects, and zero loading times between the various titles.
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 3rd  
+>Overall Position: 8th  
+>_Rating: 7.20_
 #### Fast Food Fred
 In this fast-paced catering simulation, you take control of Fred's takeaway in Middlesbrough with the aim of maximizing profits over several busy days. You must efficiently serve a variety of items, including burgers, chips, and parmos, to satisfy a constant stream of hungry customers. Success depends on your ability to manage the frantic rush and accumulate as much cash as possible before the end of the week.
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 1st  
+>Overall Position: 4th  
+>_Rating: 7.75_
 ### PLUS
 #### ZXbook
 ZXbook is a fully-featured eBook reader for the Sinclair ZX Spectrum. It allows you to read through books/articles/documents of multiple parts, navigating with ease. It is styled after the Spectrum+ 128k operating system and includes bookmarking and jumping to specifically numbered parts and pages. Five complete ZXbooks are provided for the contest and all use the same ZXbook program (all texts are in the public domain and are therefore copyright-free)
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 1st  
+>Overall Position: 2nd  
+>_Rating: 6.90_
 ### PUR-80
 #### ZX Letterpress
 Long before word games were defined by daily streaks and yellow squares, Letterpress arrived on the iPhone in 2012 and redefined the genre. Created by Loren Brichter, it transformed the simple act of finding words into a cutthroat tactical battle for territorial control. Unlike its predecessors, the game wasn't just about vocabulary; it was about the "protection" mechanic — surrounding your tiles to lock them down and keep your opponent from stealing your progress. Making it to the prestigious BASIC 10 Liner contest in 2026 proves that great game design is timeless, trading high-resolution Retina displays for the classic 8-bit look.
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 2nd  
+>Overall Position: 21st  
+>_Rating: 5.74_
 ### PUR-120
 #### ASCII Ascent
 The year is 1978. You are a graduate student at the University’s Department of Computer Science. The legendary R.O.G.U.E. Mainframe — the Research-Oriented Graduate Unix Engine — has locked the building’s lifts and synchronised the security systems to a faulty ASCII table.
 The Mission: You must ascend 120 procedurally-generated levels of the Computer Science Block to reach the rooftop satellite uplink. Only by manually resetting the system at the summit can you stop the mainframe from wiping the University’s research database. Armed only with your wits and health, you must build up your experience to navigate a monolith filled with hardware malfunctions and corrupted data strings.
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 4th   
+>Overall Position: 10th  
+>_Rating: 5.45_
 ### SCHAU
 #### ZXsheet
 ZXsheet is a full-featured spreadsheet application for the Sinclair ZX Spectrum, written in only 10 lines of BASIC. It features a 20-row by 10-column workspace that supports formulas with relative addressing, full-color formatting, and a unique graphical bar chart function. Users can navigate the interface using cursor keys, toggle between manual and automatic calculation modes, and save or print their work.
->ZX Spectrum Position:   
->Overall Position:   
->_Rating:_
+>ZX Spectrum Position: 1st  
+>Overall Position: 1st  
+>_Rating: 8.14_
 ## 2025
 ### EXTREM-256
 #### Barcode Battle
